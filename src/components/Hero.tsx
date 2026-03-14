@@ -4,6 +4,7 @@ import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
+import ParallaxLayer from "./ParallaxLayer";
 
 const GoldOrnamentCorner = ({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) => {
   const styles: Record<string, React.CSSProperties> = {
