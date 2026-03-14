@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageCircle, Mail, ExternalLink, X, Gem } from "lucide-react";
+import lizardDivider from "@/assets/lizard-divider.png";
 
 const Footer = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
@@ -9,11 +10,18 @@ const Footer = () => {
       <footer className="py-8 px-4 border-t border-accent/8"
         style={{ background: 'linear-gradient(135deg, hsl(160 30% 4%), hsl(160 30% 3%))' }}>
         <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Gem className="h-4 w-4 text-accent/30" />
             <span className="font-body text-xs text-foreground/35">
               © 2024 [Имя]. Все права защищены.
             </span>
+            {/* Lizard guardian — subtle decorative accent */}
+            <img
+              src={lizardDivider}
+              alt=""
+              className="h-5 w-auto opacity-20 ml-2"
+              style={{ filter: "sepia(1) hue-rotate(10deg) saturate(0.6) brightness(1.2)" }}
+            />
           </div>
 
           <div className="flex items-center gap-4">
