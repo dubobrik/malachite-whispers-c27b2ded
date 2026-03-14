@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import SectionDecor from "./SectionDecor";
+import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const testimonials = [
   {
@@ -21,15 +23,33 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="section-padding relative"
-      style={{ background: 'hsl(160 20% 7%)' }}>
-      <div className="container mx-auto max-w-5xl">
+    <section className="section-padding relative overflow-hidden">
+      {/* Layer 1: Background */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: `url(${malachiteTexture})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 70%',
+        opacity: 0.03,
+      }} />
+      <div className="absolute inset-0" style={{
+        background: `
+          radial-gradient(ellipse 80% 50% at 50% 40%, hsl(160 50% 12% / 0.1) 0%, transparent 70%),
+          linear-gradient(180deg, hsl(160 22% 6.5%) 0%, hsl(160 20% 7%) 50%, hsl(160 22% 6.5%) 100%)
+        `,
+      }} />
+
+      {/* Layer 2: Decorative */}
+      <SectionDecor variant="testimonials" />
+
+      {/* Layer 3: Content */}
+      <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
+          style={{ filter: 'drop-shadow(0 0 20px hsl(43 76% 52% / 0.15))' }}
         >
           Отзывы
         </motion.h2>
@@ -42,9 +62,9 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card"
+              className="gold-border-card group backdrop-blur-sm"
             >
-              <Quote className="h-6 w-6 text-accent/30 mb-4" />
+              <Quote className="h-6 w-6 text-accent/30 mb-4 transition-all duration-500 group-hover:text-accent/50 group-hover:drop-shadow-[0_0_8px_hsl(43_76%_52%/0.2)]" />
               <p className="font-body text-sm text-foreground/60 leading-relaxed mb-6 italic">
                 «{t.text}»
               </p>
