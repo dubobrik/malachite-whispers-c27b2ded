@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
+import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const About = () => {
   return (
