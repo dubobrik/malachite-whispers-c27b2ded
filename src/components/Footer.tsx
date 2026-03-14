@@ -7,56 +7,61 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="py-8 px-4 border-t border-accent/8"
-        style={{ background: 'linear-gradient(135deg, hsl(160 30% 4%), hsl(160 30% 3%))' }}>
-        <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="py-10 px-6 border-t border-accent/6"
+        style={{ background: 'linear-gradient(180deg, hsl(160 30% 4%), hsl(160 30% 3%))' }}>
+        <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-3">
-            <Gem className="h-4 w-4 text-accent/30" />
-            <span className="font-body text-xs text-foreground/35">
+            <Gem className="h-4 w-4 text-accent/25" />
+            <span className="font-body text-xs text-foreground/30 tracking-wide">
               © 2024 [Имя]. Все права защищены.
             </span>
-            {/* Lizard guardian — subtle decorative accent */}
             <img
               src={lizardDivider}
               alt=""
-              className="h-5 w-auto opacity-20 ml-2"
-              style={{ filter: "sepia(1) hue-rotate(10deg) saturate(0.6) brightness(1.2)" }}
+              className="h-5 w-auto opacity-15 ml-2"
+              style={{ filter: "sepia(1) hue-rotate(10deg) saturate(0.5) brightness(1.2)" }}
             />
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <button
               onClick={() => setShowPrivacy(true)}
-              className="font-body text-xs text-foreground/30 hover:text-accent transition-colors underline"
+              className="font-body text-xs text-foreground/25 hover:text-accent transition-colors duration-500 underline underline-offset-4 decoration-accent/10 tracking-wide"
             >
               Политика конфиденциальности
             </button>
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="text-foreground/30 hover:text-accent transition-colors">
-              <MessageCircle className="h-4 w-4" />
-            </a>
-            <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" className="text-foreground/30 hover:text-accent transition-colors">
-              <ExternalLink className="h-4 w-4" />
-            </a>
-            <a href="mailto:example@email.com" className="text-foreground/30 hover:text-accent transition-colors">
-              <Mail className="h-4 w-4" />
-            </a>
+            {[
+              { href: "https://t.me/", icon: MessageCircle },
+              { href: "https://vk.com/", icon: ExternalLink },
+              { href: "mailto:example@email.com", icon: Mail },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.href.startsWith('mailto') ? undefined : "_blank"}
+                rel={link.href.startsWith('mailto') ? undefined : "noopener noreferrer"}
+                className="text-foreground/20 hover:text-accent transition-colors duration-500"
+              >
+                <link.icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
         </div>
       </footer>
 
       {showPrivacy && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          style={{ background: 'hsl(160 30% 3% / 0.9)', backdropFilter: 'blur(12px)' }}
+          style={{ background: 'hsl(160 30% 3% / 0.92)', backdropFilter: 'blur(16px)' }}
           onClick={() => setShowPrivacy(false)}>
           <div
-            className="rounded-xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-8 relative gold-border-card"
+            className="rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-10 relative gold-border-card"
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={() => setShowPrivacy(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => setShowPrivacy(false)} className="absolute top-5 right-5 text-muted-foreground hover:text-foreground transition-colors">
               <X size={20} />
             </button>
-            <h3 className="font-display text-2xl font-bold text-primary mb-4">Политика конфиденциальности</h3>
-            <div className="font-body text-sm text-foreground/60 space-y-3 leading-relaxed">
+            <h3 className="font-display text-2xl font-bold text-accent mb-5">Политика конфиденциальности</h3>
+            <div className="font-body text-sm text-foreground/50 space-y-4 leading-[1.9]">
               <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей данного сайта.</p>
               <p>Мы собираем только те данные, которые вы предоставляете через форму обратной связи: имя, контактные данные, предпочтения по услугам.</p>
               <p>Ваши данные используются исключительно для связи с вами и организации консультаций. Мы не передаём данные третьим лицам.</p>
