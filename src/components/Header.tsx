@@ -5,7 +5,6 @@ import lizardIcon from "@/assets/lizard-divider.png";
 const navLinks = [
   { label: "Услуги", href: "#uslugi" },
   { label: "Обо мне", href: "#about" },
-  { label: "Портфолио", href: "#portfolio" },
   { label: "Контакты", href: "#contact" },
 ];
 
@@ -13,12 +12,16 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-md border-b border-accent/20">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-accent/15"
+      style={{
+        background: 'linear-gradient(135deg, hsl(165 80% 10% / 0.95), hsl(162 70% 14% / 0.95))',
+        backdropFilter: 'blur(12px)',
+      }}>
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        {/* Logo */}
+        {/* Logo with lizard */}
         <a href="#" className="flex items-center gap-2">
-          <img src={lizardIcon} alt="" className="h-8 w-8" />
-          <span className="font-display text-xl font-bold text-accent">
+          <img src={lizardIcon} alt="" className="h-7 w-7 opacity-70" />
+          <span className="font-display text-lg font-bold text-accent">
             Малахитовая шкатулка
           </span>
         </a>
@@ -29,7 +32,7 @@ const Header = () => {
             <a
               key={l.href}
               href={l.href}
-              className="font-body text-sm text-primary-foreground/80 hover:text-accent transition-colors duration-300"
+              className="font-body text-sm text-primary-foreground/75 hover:text-accent transition-colors duration-300"
             >
               {l.label}
             </a>
@@ -51,13 +54,14 @@ const Header = () => {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="md:hidden bg-primary/95 backdrop-blur-md border-t border-accent/20 pb-4">
+        <nav className="md:hidden border-t border-accent/15 pb-4"
+          style={{ background: 'hsl(165 80% 10% / 0.98)' }}>
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block px-6 py-3 font-body text-sm text-primary-foreground/80 hover:text-accent transition-colors"
+              className="block px-6 py-3 font-body text-sm text-primary-foreground/75 hover:text-accent transition-colors"
             >
               {l.label}
             </a>

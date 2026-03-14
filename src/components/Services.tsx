@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Sparkles, BarChart3, Target, Heart } from "lucide-react";
+import { Gem, BarChart3, Target, Heart } from "lucide-react";
 
 const services = [
   {
     title: "Таролог",
-    icon: Sparkles,
+    icon: Gem,
     desc: "Расклады на картах Таро, расклады на отношения, самопознание",
     param: "Таролог",
   },
@@ -30,8 +30,8 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="uslugi" className="section-padding bg-muted">
-      <div className="container mx-auto max-w-5xl">
+    <section id="uslugi" className="section-padding malachite-section bg-muted relative">
+      <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,15 +50,18 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card flex flex-col"
+              className="gold-border-card flex flex-col gold-corners"
             >
-              <s.icon className="h-8 w-8 text-accent mb-4" />
+              <div className="p-2 w-fit rounded-lg mb-4"
+                style={{ background: 'linear-gradient(135deg, hsl(43 76% 52% / 0.12), hsl(162 70% 21% / 0.1))' }}>
+                <s.icon className="h-7 w-7 text-accent" />
+              </div>
               <h3 className="font-display text-2xl font-bold text-primary mb-2">
                 {s.title}
               </h3>
               <p className="font-body text-foreground/70 mb-6 flex-1">{s.desc}</p>
               <a
-                href={`#contact`}
+                href="#contact"
                 onClick={() => {
                   setTimeout(() => {
                     const sel = document.getElementById("service-select") as HTMLSelectElement;
