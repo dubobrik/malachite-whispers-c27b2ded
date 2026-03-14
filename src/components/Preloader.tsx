@@ -1,186 +1,215 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import boxImg from "@/assets/box-preloader.jpg";
-import lizardImg from "@/assets/lizard-preloader.jpg";
-import crystalsImg from "@/assets/crystals-preloader.webp";
 
-type Phase = "closed" | "opening" | "revealing" | "done";
+type Phase = "dark" | "appear" | "open" | "glow" | "fade";
 
 const Preloader = ({ onComplete }: { onComplete: () => void }) => {
-  const [phase, setPhase] = useState<Phase>("closed");
+  const [phase, setPhase] = useState<Phase>("dark");
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase("opening"), 800),
-      setTimeout(() => setPhase("revealing"), 2000),
-      setTimeout(() => setPhase("done"), 3200),
-      setTimeout(onComplete, 4000),
+      setTimeout(() => setPhase("appear"), 200),
+      setTimeout(() => setPhase("open"), 700),
+      setTimeout(() => setPhase("glow"), 1400),
+      setTimeout(() => setPhase("fade"), 2100),
+      setTimeout(onComplete, 2600),
     ];
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
-  const isOpen = phase === "opening" || phase === "revealing" || phase === "done";
-  const isRevealing = phase === "revealing" || phase === "done";
+  const isOpen = phase === "open" || phase === "glow" || phase === "fade";
+  const isGlowing = phase === "glow" || phase === "fade";
+
+  // Pre-generate particles so they don't re-randomize on render
+  const particles = useMemo(() =>
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      size: 1.5 + Math.random() * 3,
+      hue: 43,
+      sat: 60 + Math.random() * 20,
+      light: 48 + Math.random() * 20,
+      offsetX: (Math.random() - 0.5) * 120,
+      startX: (Math.random() - 0.5) * 40,
+      driftX: (Math.random() - 0.5) * 80,
+      travelY: -80 - Math.random() * 140,
+      duration: 1 + Math.random() * 0.8,
+      delay: i * 0.04,
+    })), []
+  );
 
   return (
     <AnimatePresence>
-      {phase !== "done" && (
+      {phase !== "fade" ? (
         <motion.div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
-          style={{
-            background: "linear-gradient(135deg, hsl(165 80% 4%), hsl(165 60% 8%), hsl(162 70% 5%))",
-          }}
+          className="fixed inset-0 z-[200] flex items-center justify-center"
+          style={{ background: "hsl(160 30% 3%)" }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          {/* Main container */}
+          {/* Ambient background glow — reacts to box opening */}
           <motion.div
-            className="relative flex flex-col items-center"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            {/* Emerald glow behind box */}
+            className="absolute inset-0 pointer-events-none"
+            animate={{
+              opacity: isGlowing ? 1 : isOpen ? 0.4 : 0,
+            }}
+            transition={{ duration: 0.8 }}
+            style={{
+              background: `
+                radial-gradient(ellipse 50% 40% at 50% 50%, hsl(43 76% 52% / 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 70% 50% at 50% 55%, hsl(160 60% 25% / 0.08) 0%, transparent 60%)
+              `,
+            }}
+          />
+
+          <div className="relative flex flex-col items-center">
+            {/* Golden light burst behind box */}
             <motion.div
-              className="absolute inset-0 -m-16 rounded-3xl pointer-events-none"
+              className="absolute pointer-events-none"
+              style={{
+                width: 400, height: 400,
+                left: "50%", top: "45%",
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={{
+                opacity: isGlowing ? 1 : isOpen ? 0.3 : 0,
+                scale: isGlowing ? 1.4 : 1,
+              }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <div className="w-full h-full rounded-full" style={{
+                background: `radial-gradient(circle, hsl(43 76% 52% / 0.2) 0%, hsl(43 76% 52% / 0.06) 40%, transparent 70%)`,
+                filter: "blur(30px)",
+              }} />
+            </motion.div>
+
+            {/* Box container */}
+            <motion.div
+              className="relative"
+              style={{ width: "min(28vh, 280px)", perspective: "800px" }}
+              initial={{ opacity: 0, scale: 0.7, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            >
+              {/* Box body */}
+              <div className="relative overflow-hidden rounded-lg" style={{
+                aspectRatio: "1",
+                border: "2px solid hsl(43 76% 52% / 0.4)",
+                boxShadow: `
+                  0 8px 32px hsl(0 0% 0% / 0.6),
+                  0 0 40px hsl(160 60% 20% / 0.15),
+                  inset 0 -2px 8px hsl(0 0% 0% / 0.3)
+                `,
+              }}>
+                <img
+                  src={boxImg}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+
+                {/* Lid — dark top half that rotates open */}
+                <motion.div
+                  className="absolute top-0 left-0 right-0 origin-top"
+                  style={{ height: "50%", transformStyle: "preserve-3d" }}
+                  animate={{
+                    rotateX: isOpen ? -75 : 0,
+                    opacity: isOpen ? 0.6 : 1,
+                  }}
+                  transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {/* Lid surface */}
+                  <div className="absolute inset-0" style={{
+                    background: `
+                      linear-gradient(180deg, hsl(160 40% 8%) 0%, hsl(160 35% 12%) 60%, hsl(160 30% 10%) 100%)
+                    `,
+                    borderBottom: "1px solid hsl(43 76% 52% / 0.25)",
+                  }}>
+                    {/* Malachite texture on lid */}
+                    <div className="absolute inset-0 opacity-30" style={{
+                      background: `
+                        repeating-linear-gradient(160deg, transparent, transparent 8px, hsl(160 50% 18% / 0.3) 8px, hsl(160 50% 18% / 0.3) 9px),
+                        repeating-linear-gradient(200deg, transparent, transparent 12px, hsl(160 40% 15% / 0.2) 12px, hsl(160 40% 15% / 0.2) 13px)
+                      `,
+                    }} />
+                    {/* Gold clasp */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-3 rounded-b-full"
+                      style={{
+                        background: "linear-gradient(180deg, hsl(43 76% 52% / 0.6), hsl(38 87% 38% / 0.5))",
+                        boxShadow: "0 2px 6px hsl(43 76% 52% / 0.2)",
+                      }} />
+                  </div>
+                </motion.div>
+
+                {/* Golden light from inside when opened */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  animate={{
+                    opacity: isGlowing ? 0.9 : isOpen ? 0.4 : 0,
+                  }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    background: `
+                      radial-gradient(ellipse 80% 60% at 50% 20%, hsl(43 76% 55% / 0.5) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 40% at 50% 30%, hsl(43 70% 65% / 0.3) 0%, transparent 50%),
+                      linear-gradient(180deg, hsl(43 76% 52% / 0.15) 0%, transparent 60%)
+                    `,
+                  }}
+                />
+              </div>
+
+              {/* Gold ornament corners on box */}
+              <div className="absolute -top-1 -left-1 w-5 h-5 border-t border-l border-accent/40 rounded-tl pointer-events-none" />
+              <div className="absolute -top-1 -right-1 w-5 h-5 border-t border-r border-accent/40 rounded-tr pointer-events-none" />
+              <div className="absolute -bottom-1 -left-1 w-5 h-5 border-b border-l border-accent/40 rounded-bl pointer-events-none" />
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 border-b border-r border-accent/40 rounded-br pointer-events-none" />
+
+              {/* Rising magical particles */}
+              {isOpen && particles.map((p) => (
+                <motion.div
+                  key={p.id}
+                  className="absolute rounded-full pointer-events-none"
+                  style={{
+                    width: p.size,
+                    height: p.size,
+                    background: `hsl(${p.hue} ${p.sat}% ${p.light}%)`,
+                    left: `calc(50% + ${p.startX}px)`,
+                    top: "30%",
+                    boxShadow: `0 0 ${p.size * 2}px hsl(${p.hue} ${p.sat}% ${p.light}% / 0.5)`,
+                  }}
+                  initial={{ opacity: 0, y: 0, x: 0 }}
+                  animate={{
+                    opacity: [0, 0.8, 0],
+                    y: p.travelY,
+                    x: p.driftX,
+                  }}
+                  transition={{
+                    duration: p.duration,
+                    delay: p.delay + 0.3,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </motion.div>
+
+            {/* Title text */}
+            <motion.p
+              className="mt-8 font-display text-lg tracking-[0.2em]"
+              style={{
+                background: "linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 42%))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
               animate={{
                 opacity: isOpen ? 1 : 0,
-                scale: isOpen ? 1.3 : 0.8,
+                y: isOpen ? 0 : 8,
               }}
-              transition={{ duration: 1 }}
-              style={{
-                background: "radial-gradient(ellipse at center, hsl(160 70% 40% / 0.35), hsl(43 76% 52% / 0.12), transparent 70%)",
-              }}
-            />
-
-            {/* Box image with lid overlay */}
-            <div className="relative" style={{ width: "min(30vh, 320px)", height: "min(30vh, 320px)" }}>
-              {/* The box image */}
-              <img
-                src={boxImg}
-                alt=""
-                className="w-full h-full object-cover rounded-xl"
-                style={{
-                  border: "3px solid hsl(43 76% 52% / 0.5)",
-                  boxShadow: `
-                    0 12px 40px hsl(0 0% 0% / 0.6),
-                    0 4px 20px hsl(160 70% 20% / 0.3),
-                    0 0 60px hsl(160 70% 30% / 0.15)
-                  `,
-                }}
-              />
-
-              {/* Dark overlay that lifts to simulate opening */}
-              <motion.div
-                className="absolute inset-0 rounded-xl"
-                style={{
-                  background: "linear-gradient(180deg, hsl(162 70% 5% / 0.85) 0%, hsl(162 70% 5% / 0.4) 50%, transparent 100%)",
-                }}
-                animate={{
-                  opacity: isOpen ? 0 : 1,
-                  y: isOpen ? "-60%" : "0%",
-                }}
-                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-              />
-
-              {/* Inner glow when open */}
-              <motion.div
-                className="absolute inset-0 rounded-xl pointer-events-none"
-                animate={{ opacity: isOpen ? 0.7 : 0 }}
-                transition={{ duration: 1 }}
-                style={{
-                  background: "radial-gradient(ellipse at center top, hsl(160 80% 45% / 0.4), hsl(43 76% 52% / 0.15) 40%, transparent 70%)",
-                }}
-              />
-
-              {/* === CRYSTALS emerging === */}
-              <motion.div
-                className="absolute left-1/2 -translate-x-1/2 -top-8 z-20"
-                initial={{ opacity: 0, y: 80, scale: 0.2 }}
-                animate={isRevealing ? {
-                  opacity: 1,
-                  y: -60,
-                  scale: 0.9,
-                } : { opacity: 0, y: 80, scale: 0.2 }}
-                transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
-              >
-                <img
-                  src={crystalsImg}
-                  alt=""
-                  className="w-28 h-28 object-contain drop-shadow-[0_0_20px_hsl(160_70%_40%_/_0.6)]"
-                  style={{
-                    filter: "drop-shadow(0 0 12px hsl(160 80% 45% / 0.5)) drop-shadow(0 0 30px hsl(280 60% 50% / 0.2))",
-                  }}
-                />
-              </motion.div>
-
-              {/* === LIZARD climbing out === */}
-              <motion.div
-                className="absolute right-[-20px] top-[-10px] z-20"
-                initial={{ opacity: 0, y: 60, scale: 0.3, rotate: 20 }}
-                animate={isRevealing ? {
-                  opacity: 1,
-                  y: -30,
-                  scale: 1,
-                  rotate: -10,
-                } : { opacity: 0, y: 60, scale: 0.3, rotate: 20 }}
-                transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              >
-                <img
-                  src={lizardImg}
-                  alt=""
-                  className="w-24 h-24 object-cover rounded-full"
-                  style={{
-                    border: "2px solid hsl(43 76% 52% / 0.4)",
-                    boxShadow: "0 0 20px hsl(160 70% 40% / 0.4), 0 4px 12px hsl(0 0% 0% / 0.4)",
-                  }}
-                />
-              </motion.div>
-            </div>
-
-            {/* Gold particles */}
-            {isOpen && [...Array(16)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  width: 2 + Math.random() * 3,
-                  height: 2 + Math.random() * 3,
-                  background: `hsl(43 ${60 + Math.random() * 20}% ${45 + Math.random() * 20}%)`,
-                  left: `calc(50% + ${(Math.random() - 0.5) * 60}px)`,
-                  top: "40%",
-                }}
-                initial={{ opacity: 0, y: 0 }}
-                animate={{
-                  opacity: [0, 0.9, 0],
-                  y: -100 - Math.random() * 120,
-                  x: (Math.random() - 0.5) * 140,
-                }}
-                transition={{
-                  duration: 1.5 + Math.random() * 1,
-                  delay: i * 0.08,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Title text */}
-          <motion.p
-            className="mt-12 font-display text-xl tracking-[0.2em]"
-            style={{
-              background: "linear-gradient(135deg, hsl(43 76% 65%), hsl(43 76% 42%))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: isRevealing ? 1 : 0, y: isRevealing ? 0 : 10 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Малахитовая шкатулка
-          </motion.p>
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Малахитовая шкатулка
+            </motion.p>
+          </div>
         </motion.div>
-      )}
+      ) : null}
     </AnimatePresence>
   );
 };
