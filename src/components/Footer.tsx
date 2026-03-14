@@ -7,11 +7,12 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-malachite-deep py-8 px-4 border-t border-accent/10">
+      <footer className="py-8 px-4 border-t border-accent/10"
+        style={{ background: 'linear-gradient(135deg, hsl(165 80% 8%), hsl(165 80% 6%))' }}>
         <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <img src={lizardIcon} alt="" className="h-6 w-6 opacity-50" />
-            <span className="font-body text-xs text-primary-foreground/50">
+            <img src={lizardIcon} alt="Ящерица-хранитель" className="h-6 w-6 opacity-40" />
+            <span className="font-body text-xs text-primary-foreground/45">
               © 2024 [Имя]. Все права защищены.
             </span>
           </div>
@@ -19,17 +20,17 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setShowPrivacy(true)}
-              className="font-body text-xs text-primary-foreground/40 hover:text-accent transition-colors underline"
+              className="font-body text-xs text-primary-foreground/35 hover:text-accent transition-colors underline"
             >
               Политика конфиденциальности
             </button>
-            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 hover:text-accent transition-colors">
+            <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/35 hover:text-accent transition-colors">
               <MessageCircle className="h-4 w-4" />
             </a>
-            <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 hover:text-accent transition-colors">
+            <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/35 hover:text-accent transition-colors">
               <ExternalLink className="h-4 w-4" />
             </a>
-            <a href="mailto:example@email.com" className="text-primary-foreground/40 hover:text-accent transition-colors">
+            <a href="mailto:example@email.com" className="text-primary-foreground/35 hover:text-accent transition-colors">
               <Mail className="h-4 w-4" />
             </a>
           </div>
@@ -38,9 +39,11 @@ const Footer = () => {
 
       {/* Privacy modal */}
       {showPrivacy && (
-        <div className="fixed inset-0 z-[100] bg-malachite-deep/80 flex items-center justify-center p-4" onClick={() => setShowPrivacy(false)}>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: 'hsl(165 80% 6% / 0.85)', backdropFilter: 'blur(8px)' }}
+          onClick={() => setShowPrivacy(false)}>
           <div
-            className="bg-background rounded-xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-8 relative"
+            className="bg-background rounded-xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-8 relative gold-border-card"
             onClick={(e) => e.stopPropagation()}
           >
             <button onClick={() => setShowPrivacy(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
