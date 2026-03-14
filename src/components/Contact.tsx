@@ -84,7 +84,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Имя *</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Имя *</label>
                   <input type="text" name="name" required className={inputClass} placeholder="Ваше имя" />
                 </div>
 
