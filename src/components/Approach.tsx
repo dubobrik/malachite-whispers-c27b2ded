@@ -58,7 +58,7 @@ const Approach = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="gold-border-card text-left backdrop-blur-sm"
         >
-          <p className="font-body text-base md:text-lg text-foreground/70 leading-relaxed">
+          <p className="font-body text-base md:text-lg text-foreground/80 leading-relaxed">
             Я объединяю глубинную психологию, социологический анализ и символический
             язык Таро, чтобы помочь вам увидеть ситуацию целостно и найти верное
             решение. Мои консультации — это пространство безопасности и принятия,

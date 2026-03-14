@@ -81,20 +81,20 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-4"
+            className="text-backdrop space-y-4"
           >
-            <p className="font-body text-foreground/65 leading-relaxed">
+            <p className="font-body text-foreground/80 leading-relaxed">
               Меня зовут [Имя], и я — интегральный специалист с многолетним опытом
               работы в социологии, психологии и практике Таро. Моё образование
               включает социологический факультет и дополнительную подготовку в
               области семейной психологии и коучинга.
             </p>
-            <p className="font-body text-foreground/65 leading-relaxed">
+            <p className="font-body text-foreground/80 leading-relaxed">
               Интерес к символическому языку Таро пришёл через глубинную
               психологию. Карты для меня — это не предсказания, а инструмент
               самопознания, метафорический мост к бессознательному.
             </p>
-            <p className="font-body text-foreground/65 leading-relaxed">
+            <p className="font-body text-foreground/80 leading-relaxed">
               Мой принцип работы — целостный взгляд на человека: контекст его
               жизни, внутренние процессы и символическое пространство. Я создаю
               безопасную атмосферу, где каждый может быть услышан.
@@ -108,11 +108,11 @@ const About = () => {
               ].map((c) => (
                 <div
                   key={c.label}
-                  className="flex items-center gap-2 rounded-full border border-accent/20 px-4 py-2 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_hsl(43_76%_52%/0.12)] backdrop-blur-sm"
-                  style={{ background: 'hsl(43 76% 52% / 0.05)' }}
+                  className="flex items-center gap-2 rounded-full border border-accent/25 px-4 py-2 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_hsl(43_76%_52%/0.12)] backdrop-blur-sm"
+                  style={{ background: 'rgba(0, 0, 0, 0.25)' }}
                 >
                   <c.icon className="h-4 w-4 text-accent" />
-                  <span className="font-body text-sm text-foreground/60">{c.label}</span>
+                  <span className="font-body text-sm text-foreground/75">{c.label}</span>
                 </div>
               ))}
             </div>

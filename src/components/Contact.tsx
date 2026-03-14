@@ -70,11 +70,11 @@ const Contact = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="text-backdrop space-y-4">
                 <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Услуга</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Услуга</label>
                   <select id="service-select" name="service" className={inputClass}>
                     <option value="Таролог">Таролог</option>
                     <option value="Социолог">Социолог</option>
@@ -84,22 +84,22 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Имя *</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Имя *</label>
                   <input type="text" name="name" required className={inputClass} placeholder="Ваше имя" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Контакт (Telegram / VK / Email) *</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Контакт (Telegram / VK / Email) *</label>
                   <input type="text" name="contact" required className={inputClass} placeholder="@username или email" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Желаемая дата и время</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Желаемая дата и время</label>
                   <input type="text" name="datetime" className={inputClass} placeholder="Например, 20 марта, вечер" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Комментарий</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Комментарий</label>
                   <textarea
                     name="message"
                     rows={3}
@@ -121,9 +121,9 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center space-y-6"
+            className="flex flex-col justify-center text-backdrop space-y-6"
           >
-            <p className="font-display text-xl text-foreground/60 italic">
+            <p className="font-display text-xl text-foreground/75 italic">
               Или напишите мне напрямую
             </p>
 

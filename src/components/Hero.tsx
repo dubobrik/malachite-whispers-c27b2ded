@@ -212,72 +212,80 @@ const Hero = () => {
           ))}
         </motion.div>
 
-        {/* Decorative line above title */}
+        {/* Text content with dark backdrop */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-          className="mx-auto mb-8 max-w-xs"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+          className="text-backdrop"
         >
-          <div className="h-px" style={{
-            background: 'linear-gradient(90deg, transparent, hsl(43 76% 52% / 0.4), transparent)',
-          }} />
-        </motion.div>
+          {/* Decorative line above title */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+            className="mx-auto mb-6 max-w-xs"
+          >
+            <div className="h-px" style={{
+              background: 'linear-gradient(90deg, transparent, hsl(43 76% 52% / 0.4), transparent)',
+            }} />
+          </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-          className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-          style={{
-            background: 'linear-gradient(135deg, hsl(43 76% 72%), hsl(43 76% 48%), hsl(43 70% 58%), hsl(43 76% 68%))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            filter: 'drop-shadow(0 2px 8px hsl(43 76% 52% / 0.15))',
-          }}
-        >
-          Интегральный подход к&nbsp;вашей жизни
-        </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            style={{
+              background: 'linear-gradient(135deg, hsl(43 76% 72%), hsl(43 76% 48%), hsl(43 70% 58%), hsl(43 76% 68%))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 2px 8px hsl(43 76% 52% / 0.15))',
+            }}
+          >
+            Интегральный подход к&nbsp;вашей жизни
+          </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="font-display text-lg md:text-2xl text-foreground/70 italic mb-3"
-        >
-          Таролог · Социолог · Коуч · Семейный психолог
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="font-display text-lg md:text-2xl text-foreground/85 italic mb-3"
+          >
+            Таролог · Социолог · Коуч · Семейный психолог
+          </motion.p>
 
-        {/* Decorative line below subtitle */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          className="mx-auto mb-6 max-w-[120px]"
-        >
-          <div className="h-px" style={{
-            background: 'linear-gradient(90deg, transparent, hsl(160 50% 35% / 0.3), transparent)',
-          }} />
-        </motion.div>
+          {/* Decorative line below subtitle */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+            className="mx-auto mb-5 max-w-[120px]"
+          >
+            <div className="h-px" style={{
+              background: 'linear-gradient(90deg, transparent, hsl(160 50% 35% / 0.3), transparent)',
+            }} />
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.9 }}
-          className="font-body text-sm md:text-base text-foreground/40 mb-12 max-w-xl mx-auto leading-relaxed"
-        >
-          Помогаю найти опору и ответы через глубину традиций и ясность знания
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.9 }}
+            className="font-body text-sm md:text-base text-foreground/65 mb-8 max-w-xl mx-auto leading-relaxed"
+          >
+            Помогаю найти опору и ответы через глубину традиций и ясность знания
+          </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
-        >
-          <a href="#contact" className="btn-gold text-base px-10 py-4">
-            Записаться на консультацию
-          </a>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            <a href="#contact" className="btn-gold text-base px-10 py-4">
+              Записаться на консультацию
+            </a>
+          </motion.div>
         </motion.div>
       </div>
 

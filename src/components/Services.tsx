@@ -94,7 +94,7 @@ const Services = () => {
                 <h3 className="font-display text-2xl font-bold text-foreground mb-2">
                   {s.title}
                 </h3>
-                <p className="font-body text-foreground/55 mb-6 flex-1">{s.desc}</p>
+                <p className="font-body text-foreground/70 mb-6 flex-1">{s.desc}</p>
                 <a
                   href="#contact"
                   onClick={() => {

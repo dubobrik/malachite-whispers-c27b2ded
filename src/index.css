@@ -119,11 +119,20 @@
     @apply py-20 md:py-28 px-4 md:px-8;
   }
 
+  /* Semi-transparent text backdrop for readability */
+  .text-backdrop {
+    @apply rounded-xl px-6 py-5 md:px-8 md:py-6 backdrop-blur-md;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid hsl(var(--gold) / 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
   /* Magical artifact card — gemstone inside malachite box */
   .gold-border-card {
-    @apply rounded-xl p-6 md:p-8 transition-all duration-500 ease-out;
+    @apply rounded-xl p-6 md:p-8 transition-all duration-500 ease-out backdrop-blur-md;
     position: relative;
     background:
+      linear-gradient(165deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)),
       radial-gradient(ellipse 80% 60% at 50% 0%, hsl(160 50% 14% / 0.4) 0%, transparent 60%),
       radial-gradient(ellipse 60% 80% at 50% 100%, hsl(160 40% 10% / 0.3) 0%, transparent 50%),
       linear-gradient(165deg, hsl(160 35% 10%), hsl(160 30% 7%) 40%, hsl(160 25% 6%));
