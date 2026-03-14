@@ -2,6 +2,8 @@ import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Send, MessageCircle, Mail, ExternalLink } from "lucide-react";
 import GoldParticles from "./GoldParticles";
+import SectionDecor from "./SectionDecor";
+import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -11,13 +13,31 @@ const Contact = () => {
     setSubmitted(true);
   };
 
-  const inputClass = "w-full rounded-lg border border-accent/15 font-body text-sm px-4 py-3 focus:outline-none focus:border-accent/40 focus:shadow-[0_0_15px_hsl(43_76%_52%/0.1)] transition-all placeholder:text-foreground/20"
-    + " bg-[hsl(160_25%_8%_/_0.8)] text-foreground";
+  const inputClass = "w-full rounded-lg border border-accent/15 font-body text-sm px-4 py-3 focus:outline-none focus:border-accent/40 focus:shadow-[0_0_20px_hsl(43_76%_52%/0.1)] transition-all placeholder:text-foreground/20"
+    + " bg-[hsl(160_25%_8%_/_0.6)] backdrop-blur-sm text-foreground";
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, hsl(160 30% 4%), hsl(160 25% 6%), hsl(160 30% 4%))' }}>
+    <section id="contact" className="section-padding relative overflow-hidden">
+      {/* Layer 1: Background */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: `url(${malachiteTexture})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 80%',
+        opacity: 0.04,
+      }} />
+      <div className="absolute inset-0" style={{
+        background: `
+          radial-gradient(ellipse 50% 50% at 35% 30%, hsl(160 50% 14% / 0.15) 0%, transparent 60%),
+          radial-gradient(ellipse 40% 40% at 65% 70%, hsl(43 76% 52% / 0.04) 0%, transparent 50%),
+          linear-gradient(180deg, hsl(160 30% 4%) 0%, hsl(160 27% 5.5%) 50%, hsl(160 30% 4%) 100%)
+        `,
+      }} />
+
+      {/* Layer 2: Decorative */}
+      <SectionDecor variant="contact" />
       <GoldParticles count={10} />
+
+      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -25,6 +45,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
+          style={{ filter: 'drop-shadow(0 0 20px hsl(43 76% 52% / 0.15))' }}
         >
           Записаться на консультацию
         </motion.h2>
@@ -37,10 +58,13 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
           >
             {submitted ? (
-              <div className="gold-border-card text-center py-12">
-                <p className="font-display text-2xl text-accent font-bold mb-2">
-                  Спасибо!
-                </p>
+              <div className="gold-border-card text-center py-12 backdrop-blur-sm">
+                <div className="relative inline-block mb-3">
+                  <div className="absolute inset-0 blur-xl" style={{ background: 'hsl(43 76% 52% / 0.15)' }} />
+                  <p className="font-display text-2xl text-accent font-bold relative">
+                    Спасибо!
+                  </p>
+                </div>
                 <p className="font-body text-foreground/55">
                   Я свяжусь с вами в ближайшее время
                 </p>
@@ -103,37 +127,24 @@ const Contact = () => {
               Или напишите мне напрямую
             </p>
 
-            <div className="space-y-4">
-              <a
-                href="https://t.me/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
-              >
-                <MessageCircle className="h-5 w-5" />
-                <span className="font-body text-sm">Telegram</span>
-                <ExternalLink className="h-3 w-3 ml-auto opacity-40" />
-              </a>
-
-              <a
-                href="https://vk.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
-              >
-                <ExternalLink className="h-5 w-5" />
-                <span className="font-body text-sm">ВКонтакте</span>
-                <ExternalLink className="h-3 w-3 ml-auto opacity-40" />
-              </a>
-
-              <a
-                href="mailto:example@email.com"
-                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="font-body text-sm">Email</span>
-                <ExternalLink className="h-3 w-3 ml-auto opacity-40" />
-              </a>
+            <div className="space-y-3">
+              {[
+                { href: "https://t.me/", icon: MessageCircle, label: "Telegram" },
+                { href: "https://vk.com/", icon: ExternalLink, label: "ВКонтакте" },
+                { href: "mailto:example@email.com", icon: Mail, label: "Email" },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith('mailto') ? undefined : "_blank"}
+                  rel={link.href.startsWith('mailto') ? undefined : "noopener noreferrer"}
+                  className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-all duration-300 group rounded-lg px-4 py-3 -mx-4 hover:bg-accent/5"
+                >
+                  <link.icon className="h-5 w-5 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_hsl(43_76%_52%/0.3)]" />
+                  <span className="font-body text-sm">{link.label}</span>
+                  <ExternalLink className="h-3 w-3 ml-auto opacity-30 group-hover:opacity-60 transition-opacity" />
+                </a>
+              ))}
             </div>
           </motion.div>
         </div>
