@@ -65,12 +65,12 @@ const Testimonials = () => {
               className="gold-border-card group backdrop-blur-sm"
             >
               <Quote className="h-6 w-6 text-accent/30 mb-4 transition-all duration-500 group-hover:text-accent/50 group-hover:drop-shadow-[0_0_8px_hsl(43_76%_52%/0.2)]" />
-              <p className="font-body text-sm text-foreground/60 leading-relaxed mb-6 italic">
+              <p className="font-body text-sm text-foreground/75 leading-relaxed mb-6 italic">
                 «{t.text}»
               </p>
               <div>
                 <p className="font-display text-lg font-bold text-foreground">{t.name}</p>
-                <p className="font-body text-xs text-foreground/35">{t.location}</p>
+                <p className="font-body text-xs text-foreground/50">{t.location}</p>
               </div>
             </motion.div>
           ))}
