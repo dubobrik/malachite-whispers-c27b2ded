@@ -74,7 +74,7 @@ const Contact = () => {
                 <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Услуга</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Услуга</label>
                   <select id="service-select" name="service" className={inputClass}>
                     <option value="Таролог">Таролог</option>
                     <option value="Социолог">Социолог</option>
