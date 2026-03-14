@@ -287,7 +287,6 @@ const Hero = () => {
             </a>
           </motion.div>
         </motion.div>
-        </motion.div>
       </div>
 
       {/* Bottom gradient fade */}
