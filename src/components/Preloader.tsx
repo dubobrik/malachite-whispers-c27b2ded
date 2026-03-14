@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import boxImg from "@/assets/box-preloader.jpg";
+import MagicalDust from "./MagicalDust";
 
 type Phase = "dark" | "appear" | "lidOpen" | "glow" | "expand" | "fade";
 
@@ -66,6 +67,18 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
               `,
             }}
           />
+
+          {/* Magical dust — visible once box opens */}
+          {isOpen && (
+            <motion.div
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isGlowing ? 0.8 : 0.4 }}
+              transition={{ duration: 1.2 }}
+            >
+              <MagicalDust count={14} />
+            </motion.div>
+          )}
 
           {/* Full-screen golden wash for "expand" phase */}
           <motion.div

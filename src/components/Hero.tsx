@@ -3,6 +3,7 @@ import { Gem, Sparkles, KeyRound } from "lucide-react";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
+import MagicalDust from "./MagicalDust";
 
 const FloatingCrystal = ({ 
   x, y, size, color, glow, delay, duration 
@@ -168,6 +169,9 @@ const Hero = () => {
 
       {/* Gold particles */}
       <GoldParticles count={24} />
+
+      {/* Magical dust particles */}
+      <MagicalDust count={20} />
 
       {/* Main content — "artifact display" */}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl pt-20">
