@@ -36,6 +36,7 @@ const Contact = () => {
 
       {/* Layer 2: Decorative */}
       <SectionDecor variant="contact" />
+      <FantasyDecor variant="contact" />
       <GoldParticles count={10} />
 
       {/* Layer 3: Content */}

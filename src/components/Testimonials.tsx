@@ -41,6 +41,7 @@ const Testimonials = () => {
 
       {/* Layer 2: Decorative */}
       <SectionDecor variant="testimonials" />
+      <FantasyDecor variant="testimonials" />
 
       {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">

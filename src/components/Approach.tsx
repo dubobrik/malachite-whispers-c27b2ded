@@ -24,6 +24,7 @@ const Approach = () => {
 
       {/* Layer 2: Decorative elements */}
       <SectionDecor variant="approach" />
+      <FantasyDecor variant="approach" />
       <GoldParticles count={8} />
 
       {/* Layer 3: Content */}

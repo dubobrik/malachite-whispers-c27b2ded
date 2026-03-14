@@ -55,6 +55,7 @@ const Services = () => {
 
       {/* Layer 2: Decorative elements */}
       <SectionDecor variant="services" />
+      <FantasyDecor variant="services" />
 
       {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
