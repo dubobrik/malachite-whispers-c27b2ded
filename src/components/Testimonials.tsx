@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const testimonials = [
@@ -40,6 +41,7 @@ const Testimonials = () => {
 
       {/* Layer 2: Decorative */}
       <SectionDecor variant="testimonials" />
+      <FantasyDecor variant="testimonials" />
 
       {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
 import specialistPhoto from "@/assets/specialist-photo.jpg";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const About = () => {
@@ -24,6 +25,7 @@ const About = () => {
 
       {/* Layer 2: Decorative elements */}
       <SectionDecor variant="about" />
+      <FantasyDecor variant="about" />
 
       {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">

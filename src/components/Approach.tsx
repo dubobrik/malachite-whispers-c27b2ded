@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Gem } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Approach = () => {
@@ -23,6 +24,7 @@ const Approach = () => {
 
       {/* Layer 2: Decorative elements */}
       <SectionDecor variant="approach" />
+      <FantasyDecor variant="approach" />
       <GoldParticles count={8} />
 
       {/* Layer 3: Content */}
