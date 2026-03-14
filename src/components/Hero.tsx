@@ -3,6 +3,7 @@ import { Gem, Sparkles, KeyRound } from "lucide-react";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
+import MagicalDust from "./MagicalDust";
 
 const FloatingCrystal = ({ 
   x, y, size, color, glow, delay, duration 
