@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Send, MessageCircle, Mail, ExternalLink } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Contact = () => {
