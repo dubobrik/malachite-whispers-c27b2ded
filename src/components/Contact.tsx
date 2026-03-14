@@ -94,7 +94,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Желаемая дата и время</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Желаемая дата и время</label>
                   <input type="text" name="datetime" className={inputClass} placeholder="Например, 20 марта, вечер" />
                 </div>
 
