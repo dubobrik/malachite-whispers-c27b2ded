@@ -6,24 +6,23 @@
 
 @layer base {
   :root {
-    /* Dark velvet base */
-    --background: 160 30% 5%;
+    --background: 160 30% 4%;
     --foreground: 40 20% 88%;
 
-    --card: 160 25% 8%;
+    --card: 160 25% 7%;
     --card-foreground: 40 20% 88%;
 
-    --popover: 160 25% 7%;
+    --popover: 160 25% 6%;
     --popover-foreground: 40 20% 88%;
 
     --primary: 160 50% 35%;
     --primary-foreground: 40 20% 92%;
 
-    --secondary: 162 40% 14%;
+    --secondary: 162 40% 12%;
     --secondary-foreground: 40 20% 88%;
 
-    --muted: 160 20% 12%;
-    --muted-foreground: 40 12% 55%;
+    --muted: 160 20% 10%;
+    --muted-foreground: 40 12% 50%;
 
     --accent: 43 76% 52%;
     --accent-foreground: 0 0% 6%;
@@ -31,11 +30,11 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 160 20% 16%;
-    --input: 160 20% 12%;
+    --border: 160 20% 14%;
+    --input: 160 20% 10%;
     --ring: 43 76% 52%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 160 30% 4%;
     --sidebar-foreground: 40 20% 88%;
@@ -72,13 +71,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body antialiased;
     background-image:
-      radial-gradient(ellipse at 15% 30%, hsl(var(--malachite) / 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 15%, hsl(var(--gold) / 0.04) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, hsl(var(--emerald-dark) / 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 60%, hsl(var(--crystal-amethyst) / 0.03) 0%, transparent 45%),
-      radial-gradient(ellipse at 30% 90%, hsl(var(--gold) / 0.03) 0%, transparent 35%);
+      radial-gradient(ellipse at 15% 30%, hsl(var(--malachite) / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, hsl(var(--gold) / 0.03) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, hsl(var(--emerald-dark) / 0.05) 0%, transparent 50%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -91,58 +88,66 @@
 }
 
 @layer components {
+  /* ── Buttons ── */
   .btn-gold {
-    @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-body font-semibold text-sm
-      transition-all duration-300
-      border-2 border-transparent;
+    @apply inline-flex items-center justify-center rounded-full px-8 py-3.5 font-body font-semibold text-sm
+      transition-all duration-500 border-2 border-transparent tracking-wide;
     background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-dark)));
     color: hsl(0 0% 6%);
-    box-shadow: 0 4px 15px hsl(var(--gold) / 0.3), 0 0 30px hsl(var(--gold) / 0.1);
+    box-shadow:
+      0 4px 20px hsl(var(--gold) / 0.25),
+      0 1px 3px hsl(0 0% 0% / 0.3);
   }
   .btn-gold:hover {
-    box-shadow: 0 6px 25px hsl(var(--gold) / 0.5), 0 0 50px hsl(var(--gold) / 0.2);
+    box-shadow:
+      0 8px 32px hsl(var(--gold) / 0.4),
+      0 0 60px hsl(var(--gold) / 0.15);
     transform: translateY(-2px);
-    border-color: hsl(var(--gold-light));
+    border-color: hsl(var(--gold-light) / 0.5);
   }
 
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-body font-semibold text-sm
-      bg-transparent border-2 border-accent text-accent transition-all duration-300;
+    @apply inline-flex items-center justify-center rounded-full px-8 py-3.5 font-body font-semibold text-sm
+      bg-transparent border border-accent/30 text-accent transition-all duration-500 tracking-wide;
   }
   .btn-outline-gold:hover {
     background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-dark)));
     color: hsl(0 0% 6%);
-    box-shadow: 0 4px 20px hsl(var(--gold) / 0.4);
+    border-color: transparent;
+    box-shadow: 0 4px 24px hsl(var(--gold) / 0.35);
   }
 
+  /* ── Layout ── */
   .section-padding {
-    @apply py-20 md:py-28 px-4 md:px-8;
+    @apply py-24 md:py-32 lg:py-40 px-6 md:px-10;
   }
 
-  /* Semi-transparent text backdrop for readability */
+  /* ── Section divider — elegant gem & vein ── */
+  .section-divider {
+    @apply relative py-6;
+  }
+
+  /* ── Text backdrop for readability ── */
   .text-backdrop {
-    @apply rounded-xl px-6 py-5 md:px-8 md:py-6 backdrop-blur-md;
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid hsl(var(--gold) / 0.08);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    @apply rounded-2xl px-6 py-6 md:px-10 md:py-8;
+    background: hsl(160 30% 4% / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--gold) / 0.06);
   }
 
-  /* Magical artifact card — gemstone inside malachite box */
+  /* ── Premium card — polished gemstone artifact ── */
   .gold-border-card {
-    @apply rounded-xl p-6 md:p-8 transition-all duration-500 ease-out backdrop-blur-md;
+    @apply rounded-2xl p-7 md:p-9 transition-all duration-700 ease-out;
     position: relative;
     background:
-      linear-gradient(165deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.4)),
-      radial-gradient(ellipse 80% 60% at 50% 0%, hsl(160 50% 14% / 0.4) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 50% 100%, hsl(160 40% 10% / 0.3) 0%, transparent 50%),
-      linear-gradient(165deg, hsl(160 35% 10%), hsl(160 30% 7%) 40%, hsl(160 25% 6%));
-    border: 1px solid hsl(var(--gold) / 0.18);
+      radial-gradient(ellipse 100% 80% at 50% 0%, hsl(160 45% 12% / 0.25) 0%, transparent 60%),
+      linear-gradient(170deg, hsl(160 30% 8%), hsl(160 25% 6%) 50%, hsl(160 22% 5%));
+    border: 1px solid hsl(var(--gold) / 0.12);
     box-shadow:
-      inset 0 1px 0 hsl(var(--gold) / 0.06),
-      inset 0 -1px 0 hsl(160 40% 20% / 0.08),
-      inset 0 0 30px hsl(160 50% 12% / 0.15),
-      0 4px 20px hsl(160 30% 4% / 0.6),
-      0 1px 3px hsl(0 0% 0% / 0.3);
+      inset 0 1px 0 hsl(var(--gold) / 0.04),
+      inset 0 0 40px hsl(160 40% 10% / 0.12),
+      0 8px 32px hsl(0 0% 0% / 0.4),
+      0 2px 4px hsl(0 0% 0% / 0.2);
   }
 
   /* Gold gradient border overlay */
@@ -154,58 +159,56 @@
     padding: 1px;
     background: linear-gradient(
       160deg,
-      hsl(var(--gold) / 0.35) 0%,
-      hsl(var(--gold) / 0.12) 25%,
+      hsl(var(--gold) / 0.25) 0%,
+      hsl(var(--gold) / 0.08) 30%,
       transparent 50%,
-      hsl(var(--malachite-light) / 0.1) 75%,
-      hsl(var(--gold) / 0.2) 100%
+      hsl(var(--malachite-light) / 0.06) 75%,
+      hsl(var(--gold) / 0.15) 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.7s ease;
   }
 
-  /* Gemstone accent — top-right corner diamond */
+  /* Gemstone accent diamond */
   .gold-border-card::after {
     content: '';
     position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 6px;
-    height: 6px;
+    top: 14px;
+    right: 14px;
+    width: 5px;
+    height: 5px;
     transform: rotate(45deg);
-    background: linear-gradient(135deg, hsl(var(--gold) / 0.4), hsl(var(--crystal-glow) / 0.25));
-    box-shadow: 0 0 8px hsl(var(--gold) / 0.15), 0 0 16px hsl(var(--crystal-glow) / 0.08);
+    background: hsl(var(--gold) / 0.3);
+    box-shadow: 0 0 10px hsl(var(--gold) / 0.15);
     border-radius: 1px;
-    transition: all 0.5s ease;
+    transition: all 0.7s ease;
     pointer-events: none;
   }
 
   .gold-border-card:hover {
-    border-color: hsl(var(--gold) / 0.35);
-    transform: translateY(-4px);
+    border-color: hsl(var(--gold) / 0.25);
+    transform: translateY(-6px);
     box-shadow:
-      inset 0 1px 0 hsl(var(--gold) / 0.1),
-      inset 0 -1px 0 hsl(160 40% 20% / 0.1),
-      inset 0 0 40px hsl(160 50% 15% / 0.2),
-      0 8px 32px hsl(160 30% 4% / 0.7),
-      0 0 20px hsl(var(--gold) / 0.08),
-      0 0 60px hsl(var(--crystal-glow) / 0.06);
+      inset 0 1px 0 hsl(var(--gold) / 0.08),
+      inset 0 0 50px hsl(160 40% 12% / 0.15),
+      0 16px 48px hsl(0 0% 0% / 0.5),
+      0 0 40px hsl(var(--gold) / 0.06);
   }
 
   .gold-border-card:hover::before {
-    opacity: 1.4;
+    opacity: 1.5;
   }
 
   .gold-border-card:hover::after {
-    background: linear-gradient(135deg, hsl(var(--gold) / 0.6), hsl(var(--crystal-glow) / 0.4));
-    box-shadow: 0 0 12px hsl(var(--gold) / 0.3), 0 0 24px hsl(var(--crystal-glow) / 0.15);
+    background: hsl(var(--gold) / 0.5);
+    box-shadow: 0 0 14px hsl(var(--gold) / 0.25), 0 0 28px hsl(var(--crystal-glow) / 0.1);
   }
 
-  /* Gold L-shaped corners */
+  /* ── Gold L-shaped corners ── */
   .gold-corners {
     position: relative;
     overflow: visible;
@@ -221,17 +224,17 @@
   .gold-corners::before {
     top: 8px;
     left: 8px;
-    border-top: 1.5px solid hsl(var(--gold) / 0.35);
-    border-left: 1.5px solid hsl(var(--gold) / 0.35);
+    border-top: 1.5px solid hsl(var(--gold) / 0.25);
+    border-left: 1.5px solid hsl(var(--gold) / 0.25);
   }
   .gold-corners::after {
     bottom: 8px;
     right: 8px;
-    border-bottom: 1.5px solid hsl(var(--gold) / 0.35);
-    border-right: 1.5px solid hsl(var(--gold) / 0.35);
+    border-bottom: 1.5px solid hsl(var(--gold) / 0.25);
+    border-right: 1.5px solid hsl(var(--gold) / 0.25);
   }
 
-  /* Malachite section with deep velvet texture */
+  /* ── Malachite section ── */
   .malachite-section {
     position: relative;
     overflow: hidden;
@@ -241,54 +244,51 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 30% 0%, hsl(var(--malachite) / 0.1) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 100%, hsl(var(--emerald-dark) / 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, hsl(var(--crystal-amethyst) / 0.03) 0%, transparent 70%);
+      radial-gradient(ellipse at 30% 0%, hsl(var(--malachite) / 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 100%, hsl(var(--emerald-dark) / 0.06) 0%, transparent 50%);
     pointer-events: none;
   }
 
-  /* Malachite vein divider */
+  /* ── Malachite vein divider ── */
   .malachite-vein {
-    height: 2px;
+    height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      hsl(var(--malachite-light) / 0.3) 15%,
-      hsl(var(--gold) / 0.5) 30%,
-      hsl(var(--malachite) / 0.4) 50%,
-      hsl(var(--gold) / 0.5) 70%,
-      hsl(var(--malachite-light) / 0.3) 85%,
+      hsl(var(--malachite-light) / 0.2) 15%,
+      hsl(var(--gold) / 0.4) 35%,
+      hsl(var(--malachite) / 0.3) 50%,
+      hsl(var(--gold) / 0.4) 65%,
+      hsl(var(--malachite-light) / 0.2) 85%,
       transparent
     );
   }
 
-  /* Gold photo frame */
+  /* ── Gold photo frame ── */
   .gold-photo-frame {
-    border: 2px solid hsl(var(--gold) / 0.3);
+    border: 2px solid hsl(var(--gold) / 0.2);
     box-shadow:
-      0 4px 20px hsl(var(--malachite-deep) / 0.4),
+      0 8px 32px hsl(0 0% 0% / 0.4),
       inset 0 0 30px hsl(var(--malachite-deep) / 0.2),
-      0 0 40px hsl(var(--gold) / 0.05);
+      0 0 40px hsl(var(--gold) / 0.04);
   }
 
-  /* Crystal floating element */
-  .crystal-float {
-    position: relative;
+  /* ── Section title styling ── */
+  .section-title {
+    @apply font-display text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-6;
+    background: linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 12px hsl(43 76% 52% / 0.12));
   }
-  .crystal-float::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: hsl(var(--crystal-glow));
-    border-radius: 1px;
-    transform: rotate(45deg);
-    animation: crystal-shimmer 3s ease-in-out infinite;
-    box-shadow: 0 0 10px hsl(var(--crystal-glow) / 0.5);
+
+  .section-subtitle {
+    @apply font-display text-lg md:text-xl text-foreground/50 italic text-center mb-16 md:mb-20 max-w-2xl mx-auto;
   }
 }
 
-/* Gold dust particles */
+/* ── Keyframe animations ── */
 @keyframes gold-float {
   0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
   10% { opacity: 1; }
@@ -298,12 +298,12 @@
 
 @keyframes crystal-shimmer {
   0%, 100% { opacity: 0.3; filter: brightness(1); }
-  50% { opacity: 0.8; filter: brightness(1.5); }
+  50% { opacity: 0.7; filter: brightness(1.4); }
 }
 
 @keyframes mineral-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(var(--crystal-glow) / 0.1); }
-  50% { box-shadow: 0 0 40px hsl(var(--crystal-glow) / 0.25), 0 0 60px hsl(var(--gold) / 0.1); }
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--crystal-glow) / 0.08); }
+  50% { box-shadow: 0 0 40px hsl(var(--crystal-glow) / 0.2), 0 0 60px hsl(var(--gold) / 0.08); }
 }
 
 @keyframes slow-rotate {
@@ -313,5 +313,5 @@
 
 @keyframes gem-pulse {
   0%, 100% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.05); filter: brightness(1.2); }
+  50% { transform: scale(1.05); filter: brightness(1.15); }
 }

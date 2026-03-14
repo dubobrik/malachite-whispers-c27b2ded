@@ -10,93 +10,99 @@ const services = [
     icon: Sparkles,
     desc: "Расклады на картах Таро, расклады на отношения, самопознание",
     param: "Таролог",
-    glowColor: 'hsl(43 76% 52% / 0.06)',
+    accentColor: 'hsl(43 76% 52%)',
   },
   {
     title: "Социолог",
     icon: Eye,
     desc: "Помощь в трудной жизненной ситуации, опора на социологический анализ",
     param: "Социолог",
-    glowColor: 'hsl(160 55% 40% / 0.06)',
+    accentColor: 'hsl(160 55% 40%)',
   },
   {
     title: "Коуч",
     icon: Compass,
     desc: "Индивидуальный коучинг (цели, карьера), групповые программы",
     param: "Коуч",
-    glowColor: 'hsl(270 40% 50% / 0.05)',
+    accentColor: 'hsl(270 40% 55%)',
   },
   {
     title: "Семейный психолог",
     icon: HeartHandshake,
     desc: "Консультации пар, индивидуальные встречи по семейным вопросам",
     param: "Семейный психолог",
-    glowColor: 'hsl(145 60% 45% / 0.05)',
+    accentColor: 'hsl(145 55% 45%)',
   },
 ];
 
 const Services = () => {
   return (
     <section id="uslugi" className="section-padding relative overflow-hidden">
-      {/* Layer 1: Background texture */}
+      {/* Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center 60%',
-        opacity: 0.035,
+        opacity: 0.025,
       }} />
       <div className="absolute inset-0" style={{
         background: `
-          radial-gradient(ellipse 60% 50% at 30% 20%, hsl(160 50% 14% / 0.15) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 50% at 70% 80%, hsl(145 50% 16% / 0.12) 0%, transparent 60%),
-          linear-gradient(180deg, hsl(160 22% 7%) 0%, hsl(160 20% 8%) 50%, hsl(160 22% 7%) 100%)
+          radial-gradient(ellipse 50% 40% at 30% 20%, hsl(160 45% 12% / 0.12) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 40% at 70% 80%, hsl(145 45% 14% / 0.1) 0%, transparent 60%),
+          linear-gradient(180deg, hsl(160 22% 6%) 0%, hsl(160 20% 7%) 50%, hsl(160 22% 6%) 100%)
         `,
       }} />
 
-      {/* Layer 2: Decorative elements */}
       <SectionDecor variant="services" />
       <FantasyDecor variant="services" />
 
-      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
-          style={{ filter: 'drop-shadow(0 0 20px hsl(43 76% 52% / 0.15))' }}
+          className="section-title"
         >
           Мои направления
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="section-subtitle"
+        >
+          Каждое направление — как грань драгоценного камня, раскрывающая свой свет
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card flex flex-col group backdrop-blur-sm relative"
+              transition={{ duration: 0.7, delay: i * 0.12 }}
+              className="gold-border-card group relative"
             >
-              {/* Gold L-corners */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-accent/30 pointer-events-none transition-colors duration-500 group-hover:border-accent/50" />
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-accent/30 pointer-events-none transition-colors duration-500 group-hover:border-accent/50" />
+              {/* L-corners */}
+              <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-accent/20 pointer-events-none transition-colors duration-700 group-hover:border-accent/40" />
+              <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-accent/20 pointer-events-none transition-colors duration-700 group-hover:border-accent/40" />
 
-              {/* Card inner glow */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.glowColor}, transparent 70%)` }} />
+              {/* Hover glow */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.accentColor}08, transparent 70%)` }} />
 
               <div className="relative z-10">
-                <div className="p-3 w-fit rounded-lg mb-4 transition-all duration-500 group-hover:shadow-[0_0_30px_hsl(43_76%_52%/0.15)]"
-                  style={{ background: 'linear-gradient(135deg, hsl(43 76% 52% / 0.1), hsl(160 50% 25% / 0.08))' }}>
-                  <s.icon className="h-7 w-7 text-accent transition-transform duration-500 group-hover:scale-110" />
+                <div className="p-3.5 w-fit rounded-xl mb-5 transition-all duration-700 group-hover:shadow-[0_0_30px_hsl(43_76%_52%/0.1)]"
+                  style={{ background: `${s.accentColor}10`, border: `1px solid ${s.accentColor}15` }}>
+                  <s.icon className="h-7 w-7 transition-transform duration-700 group-hover:scale-110" style={{ color: s.accentColor }} />
                 </div>
-                <h3 className="font-display text-2xl font-bold text-foreground mb-2">
+                <h3 className="font-display text-2xl font-bold text-foreground mb-3">
                   {s.title}
                 </h3>
-                <p className="font-body text-foreground/70 mb-6 flex-1">{s.desc}</p>
+                <p className="font-body text-foreground/55 mb-8 leading-relaxed">{s.desc}</p>
                 <a
                   href="#contact"
                   onClick={() => {

@@ -25,54 +25,60 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Layer 1: Background */}
+      {/* Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center 70%',
-        opacity: 0.03,
+        opacity: 0.02,
       }} />
       <div className="absolute inset-0" style={{
         background: `
-          radial-gradient(ellipse 80% 50% at 50% 40%, hsl(160 50% 12% / 0.1) 0%, transparent 70%),
-          linear-gradient(180deg, hsl(160 22% 6.5%) 0%, hsl(160 20% 7%) 50%, hsl(160 22% 6.5%) 100%)
+          radial-gradient(ellipse 70% 50% at 50% 40%, hsl(160 40% 10% / 0.08) 0%, transparent 70%),
+          linear-gradient(180deg, hsl(160 22% 5.5%) 0%, hsl(160 20% 6.5%) 50%, hsl(160 22% 5.5%) 100%)
         `,
       }} />
 
-      {/* Layer 2: Decorative */}
       <SectionDecor variant="testimonials" />
       <FantasyDecor variant="testimonials" />
 
-      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
-          style={{ filter: 'drop-shadow(0 0 20px hsl(43 76% 52% / 0.15))' }}
+          className="section-title"
         >
           Отзывы
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="section-subtitle"
+        >
+          Истории тех, кто нашёл свои ответы
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card group backdrop-blur-sm"
+              transition={{ duration: 0.7, delay: i * 0.12 }}
+              className="gold-border-card group flex flex-col"
             >
-              <Quote className="h-6 w-6 text-accent/30 mb-4 transition-all duration-500 group-hover:text-accent/50 group-hover:drop-shadow-[0_0_8px_hsl(43_76%_52%/0.2)]" />
-              <p className="font-body text-sm text-foreground/75 leading-relaxed mb-6 italic">
+              <Quote className="h-6 w-6 text-accent/20 mb-5 transition-all duration-700 group-hover:text-accent/40" />
+              <p className="font-body text-sm text-foreground/60 leading-[1.9] mb-8 italic flex-1">
                 «{t.text}»
               </p>
-              <div>
-                <p className="font-display text-lg font-bold text-foreground">{t.name}</p>
-                <p className="font-body text-xs text-foreground/50">{t.location}</p>
+              <div className="pt-5 border-t border-accent/8">
+                <p className="font-display text-lg font-bold text-foreground/85">{t.name}</p>
+                <p className="font-body text-xs text-foreground/35 tracking-wide">{t.location}</p>
               </div>
             </motion.div>
           ))}

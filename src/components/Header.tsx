@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Gem } from "lucide-react";
 
 const navLinks = [
@@ -9,23 +10,36 @@ const navLinks = [
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-accent/10"
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: 'linear-gradient(135deg, hsl(160 30% 4% / 0.97), hsl(160 25% 6% / 0.97))',
-        backdropFilter: 'blur(16px)',
-      }}>
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="relative">
-            <Gem className="h-5 w-5 text-accent opacity-80" />
-            <div className="absolute inset-0 blur-sm" style={{ background: 'hsl(43 76% 52% / 0.2)' }} />
+        background: scrolled
+          ? 'hsl(160 30% 4% / 0.95)'
+          : 'hsl(160 30% 4% / 0.6)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: `1px solid hsl(43 76% 52% / ${scrolled ? '0.08' : '0.04'})`,
+      }}
+    >
+      <div className="container mx-auto flex items-center justify-between h-18 px-6" style={{ height: scrolled ? 60 : 72, transition: 'height 0.5s ease' }}>
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative transition-transform duration-500 group-hover:scale-110">
+            <Gem className="h-5 w-5 text-accent opacity-70" />
+            <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{ background: 'hsl(43 76% 52% / 0.3)' }} />
           </div>
           <span
-            className="font-display text-xl font-bold tracking-wide"
+            className="font-display text-xl font-bold tracking-wider"
             style={{
-              background: 'linear-gradient(135deg, hsl(43 76% 65%), hsl(43 76% 42%))',
+              background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 42%))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -35,23 +49,23 @@ const Header = () => {
           </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="font-body text-sm text-foreground/60 hover:text-accent transition-colors duration-300"
+              className="font-body text-sm text-foreground/50 hover:text-accent transition-colors duration-500 tracking-wide"
             >
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn-gold text-sm">
+          <a href="#contact" className="btn-gold text-sm px-6 py-2.5">
             Записаться
           </a>
         </nav>
 
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-foreground/70"
           onClick={() => setOpen(!open)}
           aria-label="Меню"
         >
@@ -59,26 +73,33 @@ const Header = () => {
         </button>
       </div>
 
-      {open && (
-        <nav className="md:hidden border-t border-accent/10 pb-4"
-          style={{ background: 'hsl(160 30% 4% / 0.98)' }}>
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block px-6 py-3 font-body text-sm text-foreground/60 hover:text-accent transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
-          <div className="px-6 pt-2">
-            <a href="#contact" onClick={() => setOpen(false)} className="btn-gold text-sm w-full text-center">
-              Записаться
-            </a>
-          </div>
-        </nav>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-accent/8 overflow-hidden"
+            style={{ background: 'hsl(160 30% 4% / 0.98)' }}
+          >
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="block px-8 py-4 font-body text-sm text-foreground/50 hover:text-accent transition-colors tracking-wide"
+              >
+                {l.label}
+              </a>
+            ))}
+            <div className="px-8 pb-5 pt-2">
+              <a href="#contact" onClick={() => setOpen(false)} className="btn-gold text-sm w-full text-center">
+                Записаться
+              </a>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
