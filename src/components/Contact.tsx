@@ -121,9 +121,9 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center space-y-6"
+            className="flex flex-col justify-center text-backdrop space-y-6"
           >
-            <p className="font-display text-xl text-foreground/60 italic">
+            <p className="font-display text-xl text-foreground/75 italic">
               Или напишите мне напрямую
             </p>
 
