@@ -65,6 +65,12 @@ export default {
         "mineral-blue": "hsl(var(--mineral-blue))",
         "crystal-glow": "hsl(var(--crystal-glow))",
         "emerald-dark": "hsl(var(--emerald-dark))",
+        velvet: {
+          DEFAULT: "hsl(var(--velvet))",
+          deep: "hsl(var(--velvet-deep))",
+        },
+        "crystal-emerald": "hsl(var(--crystal-emerald))",
+        "crystal-amethyst": "hsl(var(--crystal-amethyst))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -108,18 +114,17 @@ export default {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
-        "box-open": {
-          "0%": { transform: "scaleY(0) rotateX(-90deg)", opacity: "0" },
-          "60%": { transform: "scaleY(1.05) rotateX(5deg)", opacity: "1" },
-          "100%": { transform: "scaleY(1) rotateX(0deg)", opacity: "1" },
-        },
         "slow-rotate": {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
         "mineral-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(160 70% 60% / 0.1)" },
-          "50%": { boxShadow: "0 0 40px hsl(160 70% 60% / 0.2), 0 0 60px hsl(43 76% 52% / 0.1)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(160 70% 55% / 0.1)" },
+          "50%": { boxShadow: "0 0 40px hsl(160 70% 55% / 0.25), 0 0 60px hsl(43 76% 52% / 0.1)" },
+        },
+        "gem-pulse": {
+          "0%, 100%": { transform: "scale(1)", filter: "brightness(1)" },
+          "50%": { transform: "scale(1.05)", filter: "brightness(1.2)" },
         },
       },
       animation: {
@@ -128,9 +133,9 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "gold-float": "gold-float 8s ease-in-out infinite",
         "shimmer": "shimmer 3s ease-in-out infinite",
-        "box-open": "box-open 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
         "slow-rotate": "slow-rotate 60s linear infinite",
         "mineral-pulse": "mineral-pulse 4s ease-in-out infinite",
+        "gem-pulse": "gem-pulse 4s ease-in-out infinite",
       },
     },
   },
