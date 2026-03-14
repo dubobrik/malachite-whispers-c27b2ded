@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Eye, Compass, HeartHandshake } from "lucide-react";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
+import ParallaxLayer from "./ParallaxLayer";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const services = [
@@ -38,7 +39,7 @@ const services = [
 const Services = () => {
   return (
     <section id="uslugi" className="section-padding relative overflow-hidden">
-      {/* Background */}
+      {/* Layer 1: Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -53,9 +54,13 @@ const Services = () => {
         `,
       }} />
 
-      <SectionDecor variant="services" />
-      <FantasyDecor variant="services" />
+      {/* Layer 2: Floating decor (parallax) */}
+      <ParallaxLayer speed={0.35}>
+        <SectionDecor variant="services" />
+        <FantasyDecor variant="services" />
+      </ParallaxLayer>
 
+      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -86,11 +91,9 @@ const Services = () => {
               transition={{ duration: 0.7, delay: i * 0.12 }}
               className="gold-border-card group relative"
             >
-              {/* L-corners */}
               <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-accent/20 pointer-events-none transition-colors duration-700 group-hover:border-accent/40" />
               <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-accent/20 pointer-events-none transition-colors duration-700 group-hover:border-accent/40" />
 
-              {/* Hover glow */}
               <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                 style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.accentColor}08, transparent 70%)` }} />
 

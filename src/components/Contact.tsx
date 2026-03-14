@@ -4,6 +4,7 @@ import { Send, MessageCircle, Mail, ExternalLink } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
+import ParallaxLayer from "./ParallaxLayer";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Contact = () => {
@@ -19,7 +20,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      {/* Background */}
+      {/* Layer 1: Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -34,10 +35,14 @@ const Contact = () => {
         `,
       }} />
 
-      <SectionDecor variant="contact" />
-      <FantasyDecor variant="contact" />
-      <GoldParticles count={8} />
+      {/* Layer 2: Floating decor (parallax) */}
+      <ParallaxLayer speed={0.4}>
+        <SectionDecor variant="contact" />
+        <FantasyDecor variant="contact" />
+        <GoldParticles count={8} />
+      </ParallaxLayer>
 
+      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
