@@ -2,15 +2,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import crystals from "@/assets/crystals.jpg";
-import lizardKey from "@/assets/lizard-key.jpg";
-import lizardPainting from "@/assets/lizard-painting.jpg";
 import malachiteLizard from "@/assets/malachite-lizard.jpg";
+import boxPreloader from "@/assets/box-preloader.jpg";
+import crystalsPreloader from "@/assets/crystals-preloader.webp";
 
 const images = [
   { src: crystals, alt: "Кристаллы и камни для расклада" },
-  { src: lizardKey, alt: "Ящерица с ключом — символ тайного знания" },
-  { src: lizardPainting, alt: "Ящерица — Хозяйка Медной горы" },
-  { src: malachiteLizard, alt: "Малахитовая ящерица" },
+  { src: crystalsPreloader, alt: "Коллекция самоцветов и кристаллов" },
+  { src: boxPreloader, alt: "Малахитовая шкатулка с артефактами" },
+  { src: malachiteLizard, alt: "Малахитовая ящерица — хранитель шкатулки" },
 ];
 
 const Portfolio = () => {
