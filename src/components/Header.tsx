@@ -21,8 +21,16 @@ const Header = () => {
         {/* Logo with lizard */}
         <a href="#" className="flex items-center gap-2">
           <img src={lizardIcon} alt="" className="h-7 w-7 opacity-70" />
-          <span className="font-display text-lg font-bold text-accent">
-            Малахитовая шкатулка
+          <span
+            className="font-display text-xl font-bold tracking-wide"
+            style={{
+              background: 'linear-gradient(135deg, hsl(43 76% 62%), hsl(43 76% 42%))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            LoveBL
           </span>
         </a>
 

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Gem, BookOpen, KeyRound } from "lucide-react";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
+import MagicCircle from "./MagicCircle";
 
 const Hero = () => {
   return (
@@ -25,6 +26,11 @@ const Hero = () => {
           `,
         }}
       />
+
+      {/* Magic circle SVG background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <MagicCircle className="w-[600px] h-[600px] md:w-[800px] md:h-[800px] opacity-20" />
+      </div>
 
       {/* Gold ornament lines */}
       <div className="absolute inset-0 pointer-events-none opacity-10">

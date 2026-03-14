@@ -1,28 +1,28 @@
 import { motion } from "framer-motion";
-import { Gem, BarChart3, Target, Heart } from "lucide-react";
+import { Sparkles, Eye, Compass, HeartHandshake } from "lucide-react";
 
 const services = [
   {
     title: "Таролог",
-    icon: Gem,
+    icon: Sparkles,
     desc: "Расклады на картах Таро, расклады на отношения, самопознание",
     param: "Таролог",
   },
   {
     title: "Социолог",
-    icon: BarChart3,
+    icon: Eye,
     desc: "Помощь в трудной жизненной ситуации, опора на социологический анализ",
     param: "Социолог",
   },
   {
     title: "Коуч",
-    icon: Target,
+    icon: Compass,
     desc: "Индивидуальный коучинг (цели, карьера), групповые программы",
     param: "Коуч",
   },
   {
     title: "Семейный психолог",
-    icon: Heart,
+    icon: HeartHandshake,
     desc: "Консультации пар, индивидуальные встречи по семейным вопросам",
     param: "Семейный психолог",
   },
@@ -50,11 +50,11 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card flex flex-col gold-corners"
+              className="gold-border-card flex flex-col gold-corners group"
             >
-              <div className="p-2 w-fit rounded-lg mb-4"
+              <div className="p-3 w-fit rounded-lg mb-4 transition-all duration-500 group-hover:shadow-[0_0_20px_hsl(43_76%_52%/0.2)]"
                 style={{ background: 'linear-gradient(135deg, hsl(43 76% 52% / 0.12), hsl(162 70% 21% / 0.1))' }}>
-                <s.icon className="h-7 w-7 text-accent" />
+                <s.icon className="h-7 w-7 text-accent transition-transform duration-500 group-hover:scale-110" />
               </div>
               <h3 className="font-display text-2xl font-bold text-primary mb-2">
                 {s.title}
