@@ -25,15 +25,12 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <LizardDivider />
         <Approach />
         <LizardDivider />
         <Services />
-        <LizardDivider />
         <About />
         <LizardDivider />
         <Testimonials />
-        <LizardDivider />
         <Contact />
       </main>
       <Footer />

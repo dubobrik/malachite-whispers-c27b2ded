@@ -9,7 +9,7 @@ import malachiteTexture from "@/assets/malachite-texture.jpg";
 const About = () => {
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      {/* Layer 1: Background */}
+      {/* Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -24,75 +24,64 @@ const About = () => {
         `,
       }} />
 
-      {/* Layer 2: Floating decor (parallax) */}
       <ParallaxLayer speed={0.4}>
         <SectionDecor variant="about" />
         <FantasyDecor variant="about" />
       </ParallaxLayer>
 
-      {/* Layer 3: Content */}
+      {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        <motion.h2
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="section-title"
+          className="mb-16 md:mb-20"
         >
-          Обо мне
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="section-subtitle"
-        >
-          Путь через знание, интуицию и принятие
-        </motion.p>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-px bg-accent/20" />
+            <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
+          </div>
+          <h2 className="font-display text-3xl md:text-5xl font-bold"
+            style={{
+              background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            Обо мне
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 md:gap-16 items-start">
+          {/* Photo — clean framing, minimal ornaments */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="absolute -inset-6 rounded-2xl pointer-events-none"
-              style={{
-                background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 52% / 0.04), transparent 70%)',
-                filter: 'blur(25px)',
-              }} />
-
-            <div className="relative aspect-[3/4] rounded-2xl bg-muted overflow-hidden gold-photo-frame">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
               <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
               <div className="absolute inset-0 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.3) 100%)',
+                background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
               }} />
             </div>
 
-            <div className="absolute -top-2 -left-2 w-14 h-14 border-t-2 border-l-2 border-accent/25 rounded-tl-xl" />
-            <div className="absolute -top-2 -right-2 w-14 h-14 border-t-2 border-r-2 border-accent/25 rounded-tr-xl" />
-            <div className="absolute -bottom-2 -left-2 w-14 h-14 border-b-2 border-l-2 border-accent/25 rounded-bl-xl" />
-            <div className="absolute -bottom-2 -right-2 w-14 h-14 border-b-2 border-r-2 border-accent/25 rounded-br-xl" />
-
-            {[
-              { top: -4, left: -4 },
-              { top: -4, right: -4 },
-              { bottom: -4, left: -4 },
-              { bottom: -4, right: -4 },
-            ].map((pos, i) => (
-              <div key={i} className="absolute w-2 h-2 rotate-45 bg-accent/25 pointer-events-none"
-                style={{ ...pos, boxShadow: '0 0 10px hsl(43 76% 52% / 0.2)' }} />
-            ))}
+            {/* Just two corner accents — not four */}
+            <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
+            <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
           </motion.div>
 
+          {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
             className="space-y-5"
           >
             {[
@@ -100,12 +89,12 @@ const About = () => {
               "Интерес к символическому языку Таро пришёл через глубинную психологию. Карты для меня — это не предсказания, а инструмент самопознания, метафорический мост к бессознательному.",
               "Мой принцип работы — целостный взгляд на человека: контекст его жизни, внутренние процессы и символическое пространство. Я создаю безопасную атмосферу, где каждый может быть услышан.",
             ].map((text, i) => (
-              <p key={i} className="font-body text-foreground/65 leading-[1.9]">
+              <p key={i} className="font-body text-foreground/60 leading-[1.9]">
                 {text}
               </p>
             ))}
 
-            <div className="flex flex-wrap gap-4 pt-6">
+            <div className="flex flex-wrap gap-3 pt-8">
               {[
                 { icon: GraduationCap, label: "Социолог" },
                 { icon: Award, label: "Психолог" },
@@ -113,11 +102,11 @@ const About = () => {
               ].map((c) => (
                 <div
                   key={c.label}
-                  className="flex items-center gap-2.5 rounded-full border border-accent/15 px-5 py-2.5 transition-all duration-500 hover:border-accent/35 hover:shadow-[0_0_24px_hsl(43_76%_52%/0.08)]"
-                  style={{ background: 'hsl(160 30% 4% / 0.5)' }}
+                  className="flex items-center gap-2 rounded-full border border-accent/10 px-4 py-2 transition-all duration-500 hover:border-accent/25"
+                  style={{ background: 'hsl(160 30% 5% / 0.5)' }}
                 >
-                  <c.icon className="h-4 w-4 text-accent/70" />
-                  <span className="font-body text-sm text-foreground/60 tracking-wide">{c.label}</span>
+                  <c.icon className="h-3.5 w-3.5 text-accent/50" />
+                  <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
                 </div>
               ))}
             </div>
