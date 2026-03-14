@@ -20,6 +20,7 @@ const Index = () => {
       <AnimatePresence>
         {loading && <Preloader onComplete={handleComplete} />}
       </AnimatePresence>
+      {!loading && <AmbientAtmosphere />}
       <Header />
       <main>
         <Hero />

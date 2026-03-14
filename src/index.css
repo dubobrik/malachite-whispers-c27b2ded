@@ -315,3 +315,14 @@
   0%, 100% { transform: scale(1); filter: brightness(1); }
   50% { transform: scale(1.05); filter: brightness(1.15); }
 }
+
+@keyframes gem-shimmer {
+  0%, 100% { opacity: 0.15; transform: scale(1) rotate(0deg); }
+  25% { opacity: 0.35; transform: scale(1.05) rotate(2deg); }
+  50% { opacity: 0.2; transform: scale(0.98) rotate(-1deg); }
+  75% { opacity: 0.3; transform: scale(1.03) rotate(1deg); }
+}
+
+.animate-gem-shimmer {
+  animation: gem-shimmer 8s ease-in-out infinite;
+}
