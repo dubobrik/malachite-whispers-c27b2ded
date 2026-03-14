@@ -99,7 +99,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Комментарий</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Комментарий</label>
                   <textarea
                     name="message"
                     rows={3}
