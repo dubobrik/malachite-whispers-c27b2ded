@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
 import specialistPhoto from "@/assets/specialist-photo.jpg";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const About = () => {
