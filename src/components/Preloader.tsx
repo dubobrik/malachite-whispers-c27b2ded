@@ -279,42 +279,71 @@ const InteriorLight = ({ intensity }: { intensity: number }) => {
   );
 };
 
-/* ─── Floating Particles ─── */
+/* ─── Golden Dust Particles ─── */
 const Particles = ({ active }: { active: boolean }) => {
-  const count = 50;
+  const count = 60;
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  const elapsed = useRef(0);
+
   const data = useMemo(() =>
-    Array.from({ length: count }, () => ({
-      x: (Math.random() - 0.5) * 1.2,
-      z: (Math.random() - 0.5) * 0.7,
-      speed: 0.3 + Math.random() * 0.6,
-      drift: (Math.random() - 0.5) * 0.35,
-      size: 0.008 + Math.random() * 0.022,
+    Array.from({ length: count }, (_, i) => ({
+      // Spawn area — clustered inside the box opening
+      x: (Math.random() - 0.5) * 1.0,
+      z: (Math.random() - 0.5) * 0.6,
+      // Each particle has its own lifecycle offset so they stagger naturally
+      birthOffset: Math.random() * 4,
+      // Slow upward speed with variation
+      speed: 0.12 + Math.random() * 0.2,
+      // Gentle lateral wander
+      wanderX: (Math.random() - 0.5) * 0.15,
+      wanderZ: (Math.random() - 0.5) * 0.1,
+      wanderFreq: 0.4 + Math.random() * 0.6,
+      // Size variation — mostly tiny with a few slightly larger motes
+      size: i < 10
+        ? 0.012 + Math.random() * 0.014   // ~16% larger motes
+        : 0.004 + Math.random() * 0.009,  // majority: fine dust
       phase: Math.random() * Math.PI * 2,
-      hue: 38 + Math.random() * 10,
+      // Lifetime for each particle cycle
+      lifetime: 3 + Math.random() * 3,
     })), []
   );
-  const progress = useRef(0);
 
   useFrame((_, delta) => {
     if (!meshRef.current) return;
-    const target = active ? 1 : 0;
-    progress.current = THREE.MathUtils.lerp(progress.current, target, delta * 2);
+    if (active) elapsed.current += delta;
+    const t = elapsed.current;
 
     for (let i = 0; i < count; i++) {
       const d = data[i];
-      const t = progress.current;
-      const y = t * d.speed * 2.8;
-      const fadeIn = Math.min(t * 3, 1);
-      const fadeOut = Math.max(0, 1 - (y / 2.5));
-      const scale = d.size * fadeIn * fadeOut * t;
 
-      dummy.position.set(
-        d.x + Math.sin(d.phase + y * 2) * d.drift,
-        y - 0.1,
-        d.z + Math.cos(d.phase + y * 3) * d.drift * 0.5
-      );
+      // Particle doesn't start until active and past its birth offset
+      const localT = t - d.birthOffset;
+      if (!active || localT < 0) {
+        dummy.scale.setScalar(0.001);
+        dummy.position.set(0, -5, 0);
+        dummy.updateMatrix();
+        meshRef.current.setMatrixAt(i, dummy.matrix);
+        continue;
+      }
+
+      // Cycle within lifetime
+      const cycle = (localT % d.lifetime) / d.lifetime; // 0..1
+
+      // Smooth bell-curve opacity via scale: fade in, sustain, fade out
+      const fadeIn = Math.min(cycle * 5, 1);
+      const fadeOut = Math.max(0, 1 - Math.pow((cycle - 0.7) / 0.3, 2));
+      const visibility = cycle < 0.7 ? fadeIn : fadeOut;
+      const scale = d.size * Math.max(visibility, 0);
+
+      // Slow upward rise
+      const y = cycle * d.speed * 8 - 0.05;
+
+      // Gentle wander
+      const wx = Math.sin(d.phase + localT * d.wanderFreq) * d.wanderX;
+      const wz = Math.cos(d.phase * 1.3 + localT * d.wanderFreq * 0.7) * d.wanderZ;
+
+      dummy.position.set(d.x + wx, y, d.z + wz);
       dummy.scale.setScalar(Math.max(scale, 0.001));
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
@@ -322,14 +351,18 @@ const Particles = ({ active }: { active: boolean }) => {
     meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
+  // Custom additive-blend material for soft glow
+  const mat = useMemo(() => new THREE.MeshBasicMaterial({
+    color: new THREE.Color("hsl(43, 80%, 65%)"),
+    transparent: true,
+    opacity: 0.7,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  }), []);
+
   return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[1, 10, 10]} />
-      <meshBasicMaterial
-        color={new THREE.Color("hsl(43, 85%, 68%)")}
-        transparent
-        opacity={0.9}
-      />
+    <instancedMesh ref={meshRef} args={[undefined, undefined, count]} material={mat}>
+      <sphereGeometry args={[1, 8, 8]} />
     </instancedMesh>
   );
 };
