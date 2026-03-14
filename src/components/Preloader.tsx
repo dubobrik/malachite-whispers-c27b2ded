@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import boxImg from "@/assets/box-preloader.jpg";
+import MagicalDust from "./MagicalDust";
 
 type Phase = "dark" | "appear" | "lidOpen" | "glow" | "expand" | "fade";
 

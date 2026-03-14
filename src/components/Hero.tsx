@@ -170,6 +170,9 @@ const Hero = () => {
       {/* Gold particles */}
       <GoldParticles count={24} />
 
+      {/* Magical dust particles */}
+      <MagicalDust count={20} />
+
       {/* Main content — "artifact display" */}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl pt-20">
         {/* Artifact icons row */}
