@@ -106,28 +106,36 @@ const Services = () => {
             style={{ background: `radial-gradient(ellipse at 30% 50%, ${services[0].accentColor}06, transparent 60%)` }} />
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-            <div className="p-4 w-fit rounded-xl transition-all duration-700 group-hover:shadow-[0_0_30px_hsl(43_76%_52%/0.08)]"
-              style={{ background: `${services[0].accentColor}10`, border: `1px solid ${services[0].accentColor}12` }}>
-              <services.0.icon className="h-8 w-8 transition-transform duration-700 group-hover:scale-110" style={{ color: services[0].accentColor }} />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
-                {services[0].title}
-              </h3>
-              <p className="font-body text-foreground/50 leading-relaxed max-w-xl">{services[0].desc}</p>
-            </div>
-            <a
-              href="#contact"
-              onClick={() => {
-                setTimeout(() => {
-                  const sel = document.getElementById("service-select") as HTMLSelectElement;
-                  if (sel) sel.value = services[0].param;
-                }, 100);
-              }}
-              className="btn-outline-gold text-sm shrink-0"
-            >
-              Записаться
-            </a>
+            {(() => {
+              const s = services[0];
+              const Icon = s.icon;
+              return (
+                <>
+                  <div className="p-4 w-fit rounded-xl transition-all duration-700 group-hover:shadow-[0_0_30px_hsl(43_76%_52%/0.08)]"
+                    style={{ background: `${s.accentColor}10`, border: `1px solid ${s.accentColor}12` }}>
+                    <Icon className="h-8 w-8 transition-transform duration-700 group-hover:scale-110" style={{ color: s.accentColor }} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+                      {s.title}
+                    </h3>
+                    <p className="font-body text-foreground/50 leading-relaxed max-w-xl">{s.desc}</p>
+                  </div>
+                  <a
+                    href="#contact"
+                    onClick={() => {
+                      setTimeout(() => {
+                        const sel = document.getElementById("service-select") as HTMLSelectElement;
+                        if (sel) sel.value = s.param;
+                      }, 100);
+                    }}
+                    className="btn-outline-gold text-sm shrink-0"
+                  >
+                    Записаться
+                  </a>
+                </>
+              );
+            })()}
           </div>
         </motion.div>
 
