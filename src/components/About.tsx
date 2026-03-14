@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
+import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const About = () => {
   return (
@@ -24,10 +25,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-[3/4] rounded-xl bg-muted border-2 border-accent/30 overflow-hidden flex items-center justify-center">
-              <span className="font-body text-muted-foreground text-sm text-center px-4">
-                Фото специалиста<br/>(будет загружено позже)
-              </span>
+            <div className="aspect-[3/4] rounded-xl bg-muted border-2 border-accent/30 overflow-hidden">
+              <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
             </div>
             {/* Decorative corner accents */}
             <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-accent/50 rounded-tl-lg" />
