@@ -25,8 +25,8 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="section-padding relative overflow-hidden">
-      {/* Layer 1: Background */}
+    <section className="py-20 md:py-32 px-6 md:px-10 relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -40,53 +40,81 @@ const Testimonials = () => {
         `,
       }} />
 
-      {/* Layer 2: Floating decor (parallax) */}
       <ParallaxLayer speed={0.45}>
         <SectionDecor variant="testimonials" />
         <FantasyDecor variant="testimonials" />
       </ParallaxLayer>
 
-      {/* Layer 3: Content */}
+      {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        <motion.h2
+        {/* Header — right-aligned for variety */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="section-title"
+          className="text-right mb-16 md:mb-20"
         >
-          Отзывы
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="section-subtitle"
-        >
-          Истории тех, кто нашёл свои ответы
-        </motion.p>
+          <div className="flex items-center gap-3 justify-end mb-4">
+            <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">Отзывы</span>
+            <div className="w-8 h-px bg-accent/20" />
+          </div>
+          <h2 className="font-display text-3xl md:text-5xl font-bold"
+            style={{
+              background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            Истории тех, кто нашёл ответы
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.12 }}
-              className="gold-border-card group flex flex-col"
-            >
-              <Quote className="h-6 w-6 text-accent/20 mb-5 transition-all duration-700 group-hover:text-accent/40" />
-              <p className="font-body text-sm text-foreground/60 leading-[1.9] mb-8 italic flex-1">
-                «{t.text}»
-              </p>
-              <div className="pt-5 border-t border-accent/8">
-                <p className="font-display text-lg font-bold text-foreground/85">{t.name}</p>
-                <p className="font-body text-xs text-foreground/35 tracking-wide">{t.location}</p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Staggered layout — not equal columns */}
+        <div className="space-y-6">
+          {/* First testimonial — full width, editorial */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="gold-border-card group md:max-w-2xl"
+          >
+            <Quote className="h-5 w-5 text-accent/15 mb-4 transition-all duration-700 group-hover:text-accent/30" />
+            <p className="font-body text-foreground/55 leading-[1.9] mb-6 italic">
+              «{testimonials[0].text}»
+            </p>
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-px bg-accent/15" />
+              <span className="font-display text-sm font-semibold text-foreground/70">{testimonials[0].name}</span>
+              <span className="font-body text-xs text-foreground/25">{testimonials[0].location}</span>
+            </div>
+          </motion.div>
+
+          {/* Second and third — side by side, offset */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:pl-16">
+            {testimonials.slice(1).map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: (i + 1) * 0.12 }}
+                className="gold-border-card group"
+              >
+                <Quote className="h-4 w-4 text-accent/12 mb-4 transition-all duration-700 group-hover:text-accent/25" />
+                <p className="font-body text-sm text-foreground/50 leading-[1.9] mb-6 italic">
+                  «{t.text}»
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-px bg-accent/12" />
+                  <span className="font-display text-sm font-semibold text-foreground/65">{t.name}</span>
+                  <span className="font-body text-[11px] text-foreground/20">{t.location}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
