@@ -89,7 +89,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-foreground/50 mb-1 block">Контакт (Telegram / VK / Email) *</label>
+                  <label className="font-body text-sm text-foreground/65 mb-1 block">Контакт (Telegram / VK / Email) *</label>
                   <input type="text" name="contact" required className={inputClass} placeholder="@username или email" />
                 </div>
 
