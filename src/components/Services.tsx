@@ -76,8 +76,12 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="gold-border-card flex flex-col gold-corners group backdrop-blur-sm relative"
+              className="gold-border-card flex flex-col group backdrop-blur-sm relative"
             >
+              {/* Gold L-corners */}
+              <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-accent/30 pointer-events-none transition-colors duration-500 group-hover:border-accent/50" />
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-accent/30 pointer-events-none transition-colors duration-500 group-hover:border-accent/50" />
+
               {/* Card inner glow */}
               <div className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                 style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.glowColor}, transparent 70%)` }} />
