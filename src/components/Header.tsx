@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import lizardIcon from "@/assets/lizard-divider.png";
+import { Menu, X, Gem } from "lucide-react";
 
 const navLinks = [
   { label: "Услуги", href: "#uslugi" },
@@ -12,19 +11,21 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-accent/15"
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-accent/10"
       style={{
-        background: 'linear-gradient(135deg, hsl(165 80% 10% / 0.95), hsl(162 70% 14% / 0.95))',
-        backdropFilter: 'blur(12px)',
+        background: 'linear-gradient(135deg, hsl(160 30% 4% / 0.97), hsl(160 25% 6% / 0.97))',
+        backdropFilter: 'blur(16px)',
       }}>
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        {/* Logo with lizard */}
-        <a href="#" className="flex items-center gap-2">
-          <img src={lizardIcon} alt="" className="h-7 w-7 opacity-70" />
+        <a href="#" className="flex items-center gap-2.5">
+          <div className="relative">
+            <Gem className="h-5 w-5 text-accent opacity-80" />
+            <div className="absolute inset-0 blur-sm" style={{ background: 'hsl(43 76% 52% / 0.2)' }} />
+          </div>
           <span
             className="font-display text-xl font-bold tracking-wide"
             style={{
-              background: 'linear-gradient(135deg, hsl(43 76% 62%), hsl(43 76% 42%))',
+              background: 'linear-gradient(135deg, hsl(43 76% 65%), hsl(43 76% 42%))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -34,13 +35,12 @@ const Header = () => {
           </span>
         </a>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="font-body text-sm text-primary-foreground/75 hover:text-accent transition-colors duration-300"
+              className="font-body text-sm text-foreground/60 hover:text-accent transition-colors duration-300"
             >
               {l.label}
             </a>
@@ -50,9 +50,8 @@ const Header = () => {
           </a>
         </nav>
 
-        {/* Mobile burger */}
         <button
-          className="md:hidden text-primary-foreground"
+          className="md:hidden text-foreground"
           onClick={() => setOpen(!open)}
           aria-label="Меню"
         >
@@ -60,16 +59,15 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <nav className="md:hidden border-t border-accent/15 pb-4"
-          style={{ background: 'hsl(165 80% 10% / 0.98)' }}>
+        <nav className="md:hidden border-t border-accent/10 pb-4"
+          style={{ background: 'hsl(160 30% 4% / 0.98)' }}>
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block px-6 py-3 font-body text-sm text-primary-foreground/75 hover:text-accent transition-colors"
+              className="block px-6 py-3 font-body text-sm text-foreground/60 hover:text-accent transition-colors"
             >
               {l.label}
             </a>

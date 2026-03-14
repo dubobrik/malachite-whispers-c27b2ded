@@ -21,14 +21,15 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding relative"
+      style={{ background: 'hsl(160 20% 7%)' }}>
       <div className="container mx-auto max-w-5xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-3xl md:text-5xl font-bold text-primary text-center mb-12"
+          className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
         >
           Отзывы
         </motion.h2>
@@ -43,13 +44,13 @@ const Testimonials = () => {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="gold-border-card"
             >
-              <Quote className="h-6 w-6 text-accent/40 mb-4" />
-              <p className="font-body text-sm text-foreground/75 leading-relaxed mb-6 italic">
+              <Quote className="h-6 w-6 text-accent/30 mb-4" />
+              <p className="font-body text-sm text-foreground/60 leading-relaxed mb-6 italic">
                 «{t.text}»
               </p>
               <div>
-                <p className="font-display text-lg font-bold text-primary">{t.name}</p>
-                <p className="font-body text-xs text-muted-foreground">{t.location}</p>
+                <p className="font-display text-lg font-bold text-foreground">{t.name}</p>
+                <p className="font-body text-xs text-foreground/35">{t.location}</p>
               </div>
             </motion.div>
           ))}

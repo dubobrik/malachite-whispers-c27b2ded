@@ -11,12 +11,12 @@ const Contact = () => {
     setSubmitted(true);
   };
 
-  const inputClass = "w-full rounded-lg border border-accent/25 font-body text-sm px-4 py-3 focus:outline-none focus:border-accent transition-colors placeholder:opacity-30"
-    + " bg-[hsl(40_30%_94%_/_0.08)] text-primary-foreground";
+  const inputClass = "w-full rounded-lg border border-accent/15 font-body text-sm px-4 py-3 focus:outline-none focus:border-accent/40 focus:shadow-[0_0_15px_hsl(43_76%_52%/0.1)] transition-all placeholder:text-foreground/20"
+    + " bg-[hsl(160_25%_8%_/_0.8)] text-foreground";
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, hsl(165 80% 10%), hsl(162 70% 14%), hsl(165 80% 10%))' }}>
+      style={{ background: 'linear-gradient(180deg, hsl(160 30% 4%), hsl(160 25% 6%), hsl(160 30% 4%))' }}>
       <GoldParticles count={10} />
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
@@ -30,7 +30,6 @@ const Contact = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -42,7 +41,7 @@ const Contact = () => {
                 <p className="font-display text-2xl text-accent font-bold mb-2">
                   Спасибо!
                 </p>
-                <p className="font-body text-primary-foreground/70">
+                <p className="font-body text-foreground/55">
                   Я свяжусь с вами в ближайшее время
                 </p>
               </div>
@@ -51,12 +50,8 @@ const Contact = () => {
                 <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
                 <div>
-                  <label className="font-body text-sm text-primary-foreground/60 mb-1 block">Услуга</label>
-                  <select
-                    id="service-select"
-                    name="service"
-                    className={inputClass}
-                  >
+                  <label className="font-body text-sm text-foreground/50 mb-1 block">Услуга</label>
+                  <select id="service-select" name="service" className={inputClass}>
                     <option value="Таролог">Таролог</option>
                     <option value="Социолог">Социолог</option>
                     <option value="Коуч">Коуч</option>
@@ -65,22 +60,22 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-primary-foreground/60 mb-1 block">Имя *</label>
+                  <label className="font-body text-sm text-foreground/50 mb-1 block">Имя *</label>
                   <input type="text" name="name" required className={inputClass} placeholder="Ваше имя" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-primary-foreground/60 mb-1 block">Контакт (Telegram / VK / Email) *</label>
+                  <label className="font-body text-sm text-foreground/50 mb-1 block">Контакт (Telegram / VK / Email) *</label>
                   <input type="text" name="contact" required className={inputClass} placeholder="@username или email" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-primary-foreground/60 mb-1 block">Желаемая дата и время</label>
+                  <label className="font-body text-sm text-foreground/50 mb-1 block">Желаемая дата и время</label>
                   <input type="text" name="datetime" className={inputClass} placeholder="Например, 20 марта, вечер" />
                 </div>
 
                 <div>
-                  <label className="font-body text-sm text-primary-foreground/60 mb-1 block">Комментарий</label>
+                  <label className="font-body text-sm text-foreground/50 mb-1 block">Комментарий</label>
                   <textarea
                     name="message"
                     rows={3}
@@ -97,7 +92,6 @@ const Contact = () => {
             )}
           </motion.div>
 
-          {/* Right column — contacts */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -105,7 +99,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col justify-center space-y-6"
           >
-            <p className="font-display text-xl text-primary-foreground/75 italic">
+            <p className="font-display text-xl text-foreground/60 italic">
               Или напишите мне напрямую
             </p>
 
@@ -114,7 +108,7 @@ const Contact = () => {
                 href="https://t.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-primary-foreground/60 hover:text-accent transition-colors"
+                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
               >
                 <MessageCircle className="h-5 w-5" />
                 <span className="font-body text-sm">Telegram</span>
@@ -125,7 +119,7 @@ const Contact = () => {
                 href="https://vk.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-primary-foreground/60 hover:text-accent transition-colors"
+                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
               >
                 <ExternalLink className="h-5 w-5" />
                 <span className="font-body text-sm">ВКонтакте</span>
@@ -134,7 +128,7 @@ const Contact = () => {
 
               <a
                 href="mailto:example@email.com"
-                className="flex items-center gap-3 text-primary-foreground/60 hover:text-accent transition-colors"
+                className="flex items-center gap-3 text-foreground/45 hover:text-accent transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 <span className="font-body text-sm">Email</span>

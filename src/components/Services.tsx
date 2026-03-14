@@ -30,14 +30,15 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="uslugi" className="section-padding malachite-section bg-muted relative">
+    <section id="uslugi" className="section-padding malachite-section relative"
+      style={{ background: 'hsl(160 20% 8%)' }}>
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-3xl md:text-5xl font-bold text-primary text-center mb-12"
+          className="font-display text-3xl md:text-5xl font-bold text-accent text-center mb-12"
         >
           Мои направления
         </motion.h2>
@@ -52,14 +53,14 @@ const Services = () => {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="gold-border-card flex flex-col gold-corners group"
             >
-              <div className="p-3 w-fit rounded-lg mb-4 transition-all duration-500 group-hover:shadow-[0_0_20px_hsl(43_76%_52%/0.2)]"
-                style={{ background: 'linear-gradient(135deg, hsl(43 76% 52% / 0.12), hsl(162 70% 21% / 0.1))' }}>
+              <div className="p-3 w-fit rounded-lg mb-4 transition-all duration-500 group-hover:shadow-[0_0_25px_hsl(43_76%_52%/0.15)]"
+                style={{ background: 'linear-gradient(135deg, hsl(43 76% 52% / 0.1), hsl(160 50% 25% / 0.08))' }}>
                 <s.icon className="h-7 w-7 text-accent transition-transform duration-500 group-hover:scale-110" />
               </div>
-              <h3 className="font-display text-2xl font-bold text-primary mb-2">
+              <h3 className="font-display text-2xl font-bold text-foreground mb-2">
                 {s.title}
               </h3>
-              <p className="font-body text-foreground/70 mb-6 flex-1">{s.desc}</p>
+              <p className="font-body text-foreground/55 mb-6 flex-1">{s.desc}</p>
               <a
                 href="#contact"
                 onClick={() => {
