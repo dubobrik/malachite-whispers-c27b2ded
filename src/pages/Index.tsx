@@ -20,9 +20,6 @@ const Index = () => {
         <LizardDivider />
         <About />
         <LizardDivider />
-        <Portfolio />
-        <LizardDivider />
-        <Testimonials />
         <Contact />
       </main>
       <Footer />
