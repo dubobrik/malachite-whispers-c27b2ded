@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionDecor from "./SectionDecor";
+import FantasyDecor from "./FantasyDecor";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const testimonials = [
