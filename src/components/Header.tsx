@@ -30,7 +30,7 @@ const Header = () => {
               backgroundClip: 'text',
             }}
           >
-            LoveBL
+            Малахитовая шкатулка
           </span>
         </a>
 
