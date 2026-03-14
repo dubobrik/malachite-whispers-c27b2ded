@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
+import ParallaxLayer from "./ParallaxLayer";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const testimonials = [
@@ -25,7 +26,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Background */}
+      {/* Layer 1: Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -39,9 +40,13 @@ const Testimonials = () => {
         `,
       }} />
 
-      <SectionDecor variant="testimonials" />
-      <FantasyDecor variant="testimonials" />
+      {/* Layer 2: Floating decor (parallax) */}
+      <ParallaxLayer speed={0.45}>
+        <SectionDecor variant="testimonials" />
+        <FantasyDecor variant="testimonials" />
+      </ParallaxLayer>
 
+      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

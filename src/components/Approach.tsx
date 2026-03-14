@@ -3,12 +3,13 @@ import { Gem } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
+import ParallaxLayer from "./ParallaxLayer";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Approach = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Background */}
+      {/* Layer 1: Background texture */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -22,10 +23,14 @@ const Approach = () => {
         `,
       }} />
 
-      <SectionDecor variant="approach" />
-      <FantasyDecor variant="approach" />
-      <GoldParticles count={6} />
+      {/* Layer 2: Floating decor (parallax — moves slower) */}
+      <ParallaxLayer speed={0.4}>
+        <SectionDecor variant="approach" />
+        <FantasyDecor variant="approach" />
+        <GoldParticles count={6} />
+      </ParallaxLayer>
 
+      {/* Layer 3: Content (normal scroll) */}
       <div className="container mx-auto max-w-3xl text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 10 }}

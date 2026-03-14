@@ -4,6 +4,7 @@ import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
+import ParallaxLayer from "./ParallaxLayer";
 
 const GoldOrnamentCorner = ({ position }: { position: 'tl' | 'tr' | 'bl' | 'br' }) => {
   const styles: Record<string, React.CSSProperties> = {
@@ -49,49 +50,56 @@ const Hero = () => {
         `,
       }} />
 
-      {/* Central emerald glow */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{
-          left: '50%', top: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '700px', height: '700px',
-        }}
-        animate={{
-          opacity: [0.3, 0.55, 0.4, 0.5, 0.3],
-          scale: [1, 1.04, 0.98, 1.02, 1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-full h-full rounded-full" style={{
-          background: 'radial-gradient(circle, hsl(160 50% 22% / 0.1) 0%, hsl(145 40% 18% / 0.04) 40%, transparent 70%)',
-          filter: 'blur(50px)',
-        }} />
-      </motion.div>
+      {/* Layer 2: Decorative elements (parallax — slower scroll) */}
+      <ParallaxLayer speed={0.3}>
+        {/* Central emerald glow */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%', top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '700px', height: '700px',
+          }}
+          animate={{
+            opacity: [0.3, 0.55, 0.4, 0.5, 0.3],
+            scale: [1, 1.04, 0.98, 1.02, 1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="w-full h-full rounded-full" style={{
+            background: 'radial-gradient(circle, hsl(160 50% 22% / 0.1) 0%, hsl(145 40% 18% / 0.04) 40%, transparent 70%)',
+            filter: 'blur(50px)',
+          }} />
+        </motion.div>
 
-      {/* Warm gold accent glow */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{
-          left: '50%', top: '46%',
-          transform: 'translate(-50%, -50%)',
-          width: '350px', height: '350px',
-        }}
-        animate={{ opacity: [0.2, 0.4, 0.25, 0.35, 0.2] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-      >
-        <div className="w-full h-full rounded-full" style={{
-          background: 'radial-gradient(circle, hsl(43 76% 52% / 0.05) 0%, transparent 70%)',
-          filter: 'blur(35px)',
-        }} />
-      </motion.div>
+        {/* Warm gold accent glow */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%', top: '46%',
+            transform: 'translate(-50%, -50%)',
+            width: '350px', height: '350px',
+          }}
+          animate={{ opacity: [0.2, 0.4, 0.25, 0.35, 0.2] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        >
+          <div className="w-full h-full rounded-full" style={{
+            background: 'radial-gradient(circle, hsl(43 76% 52% / 0.05) 0%, transparent 70%)',
+            filter: 'blur(35px)',
+          }} />
+        </motion.div>
 
-      {/* Magic circle — large, subtle */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <MagicCircle className="w-[600px] h-[600px] md:w-[850px] md:h-[850px] opacity-[0.08]" />
-      </div>
+        {/* Magic circle */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <MagicCircle className="w-[600px] h-[600px] md:w-[850px] md:h-[850px] opacity-[0.08]" />
+        </div>
 
-      {/* Gold ornament corners */}
+        {/* Particles */}
+        <GoldParticles count={16} />
+        <MagicalDust count={12} />
+      </ParallaxLayer>
+
+      {/* Gold ornament corners (fixed to viewport edges) */}
       <GoldOrnamentCorner position="tl" />
       <GoldOrnamentCorner position="tr" />
       <GoldOrnamentCorner position="bl" />
@@ -104,10 +112,6 @@ const Hero = () => {
         <div className="absolute bottom-20 left-20 right-20 h-px opacity-[0.06]"
           style={{ background: 'linear-gradient(90deg, transparent, hsl(43 76% 52%), transparent)' }} />
       </div>
-
-      {/* Particles — reduced count for elegance */}
-      <GoldParticles count={16} />
-      <MagicalDust count={12} />
 
       {/* ── Main content ── */}
       <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">

@@ -3,12 +3,13 @@ import { GraduationCap, Award, BookOpen } from "lucide-react";
 import specialistPhoto from "@/assets/specialist-photo.jpg";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
+import ParallaxLayer from "./ParallaxLayer";
 import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const About = () => {
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      {/* Background */}
+      {/* Layer 1: Background */}
       <div className="absolute inset-0" style={{
         backgroundImage: `url(${malachiteTexture})`,
         backgroundSize: 'cover',
@@ -23,9 +24,13 @@ const About = () => {
         `,
       }} />
 
-      <SectionDecor variant="about" />
-      <FantasyDecor variant="about" />
+      {/* Layer 2: Floating decor (parallax) */}
+      <ParallaxLayer speed={0.4}>
+        <SectionDecor variant="about" />
+        <FantasyDecor variant="about" />
+      </ParallaxLayer>
 
+      {/* Layer 3: Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -47,7 +52,6 @@ const About = () => {
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,13 +72,11 @@ const About = () => {
               }} />
             </div>
 
-            {/* L-shaped gold corners */}
             <div className="absolute -top-2 -left-2 w-14 h-14 border-t-2 border-l-2 border-accent/25 rounded-tl-xl" />
             <div className="absolute -top-2 -right-2 w-14 h-14 border-t-2 border-r-2 border-accent/25 rounded-tr-xl" />
             <div className="absolute -bottom-2 -left-2 w-14 h-14 border-b-2 border-l-2 border-accent/25 rounded-bl-xl" />
             <div className="absolute -bottom-2 -right-2 w-14 h-14 border-b-2 border-r-2 border-accent/25 rounded-br-xl" />
 
-            {/* Corner diamonds */}
             {[
               { top: -4, left: -4 },
               { top: -4, right: -4 },
@@ -86,7 +88,6 @@ const About = () => {
             ))}
           </motion.div>
 
-          {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
