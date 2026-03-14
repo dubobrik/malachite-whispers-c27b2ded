@@ -4,7 +4,7 @@ import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-background">
+    <section id="about" className="section-padding bg-background relative">
       <div className="container mx-auto max-w-5xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ const About = () => {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          {/* Photo placeholder */}
+          {/* Photo with gold corner ornaments */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -25,12 +25,14 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-[3/4] rounded-xl bg-muted border-2 border-accent/30 overflow-hidden">
+            <div className="aspect-[3/4] rounded-xl bg-muted overflow-hidden gold-photo-frame">
               <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
             </div>
-            {/* Decorative corner accents */}
-            <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-accent/50 rounded-tl-lg" />
-            <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-accent/50 rounded-br-lg" />
+            {/* L-shaped gold corner ornaments */}
+            <div className="absolute -top-1 -left-1 w-10 h-10 border-t-2 border-l-2 border-accent/50 rounded-tl-lg" />
+            <div className="absolute -top-1 -right-1 w-10 h-10 border-t-2 border-r-2 border-accent/50 rounded-tr-lg" />
+            <div className="absolute -bottom-1 -left-1 w-10 h-10 border-b-2 border-l-2 border-accent/50 rounded-bl-lg" />
+            <div className="absolute -bottom-1 -right-1 w-10 h-10 border-b-2 border-r-2 border-accent/50 rounded-br-lg" />
           </motion.div>
 
           {/* Text */}
@@ -66,7 +68,7 @@ const About = () => {
               ].map((c) => (
                 <div
                   key={c.label}
-                  className="flex items-center gap-2 rounded-full border border-accent/30 px-4 py-2"
+                  className="flex items-center gap-2 rounded-full border border-accent/30 px-4 py-2 transition-all duration-300 hover:border-accent/60 hover:shadow-[0_0_15px_hsl(43_76%_52%/0.1)]"
                 >
                   <c.icon className="h-4 w-4 text-accent" />
                   <span className="font-body text-sm text-foreground/70">{c.label}</span>

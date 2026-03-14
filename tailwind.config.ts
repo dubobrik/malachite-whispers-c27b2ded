@@ -113,6 +113,14 @@ export default {
           "60%": { transform: "scaleY(1.05) rotateX(5deg)", opacity: "1" },
           "100%": { transform: "scaleY(1) rotateX(0deg)", opacity: "1" },
         },
+        "slow-rotate": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "mineral-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(160 70% 60% / 0.1)" },
+          "50%": { boxShadow: "0 0 40px hsl(160 70% 60% / 0.2), 0 0 60px hsl(43 76% 52% / 0.1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -121,6 +129,8 @@ export default {
         "gold-float": "gold-float 8s ease-in-out infinite",
         "shimmer": "shimmer 3s ease-in-out infinite",
         "box-open": "box-open 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "slow-rotate": "slow-rotate 60s linear infinite",
+        "mineral-pulse": "mineral-pulse 4s ease-in-out infinite",
       },
     },
   },

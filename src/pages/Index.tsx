@@ -1,3 +1,5 @@
+import { useState, useCallback } from "react";
+import { AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Approach from "@/components/Approach";
@@ -6,10 +8,17 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
 
 const Index = () => {
+  const [loading, setLoading] = useState(true);
+  const handleComplete = useCallback(() => setLoading(false), []);
+
   return (
     <>
+      <AnimatePresence>
+        {loading && <Preloader onComplete={handleComplete} />}
+      </AnimatePresence>
       <Header />
       <main>
         <Hero />

@@ -91,9 +91,11 @@
   body {
     @apply bg-background text-foreground font-body;
     background-image:
-      radial-gradient(ellipse at 20% 50%, hsl(var(--malachite) / 0.04) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, hsl(var(--gold) / 0.03) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, hsl(var(--emerald-dark) / 0.03) 0%, transparent 50%);
+      radial-gradient(ellipse at 15% 30%, hsl(var(--malachite) / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, hsl(var(--gold) / 0.03) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, hsl(var(--emerald-dark) / 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, hsl(var(--malachite-light) / 0.03) 0%, transparent 45%),
+      radial-gradient(ellipse at 30% 90%, hsl(var(--gold) / 0.02) 0%, transparent 35%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -134,7 +136,7 @@
     @apply py-20 md:py-28 px-4 md:px-8;
   }
 
-  /* Malachite gem card */
+  /* Malachite gem card with L-shaped gold corners */
   .gold-border-card {
     @apply rounded-xl p-6 md:p-8 transition-all duration-500;
     background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--parchment-dark) / 0.8));
@@ -166,19 +168,31 @@
     transform: translateY(-3px);
   }
 
-  /* Gold ornament corners */
+  /* Gold L-shaped corners */
   .gold-corners {
     position: relative;
+    overflow: visible;
   }
   .gold-corners::before,
   .gold-corners::after {
-    content: '✦';
+    content: '';
     position: absolute;
-    color: hsl(var(--gold) / 0.3);
-    font-size: 1.25rem;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
   }
-  .gold-corners::before { top: 1rem; left: 1rem; }
-  .gold-corners::after { bottom: 1rem; right: 1rem; }
+  .gold-corners::before {
+    top: 8px;
+    left: 8px;
+    border-top: 1.5px solid hsl(var(--gold) / 0.35);
+    border-left: 1.5px solid hsl(var(--gold) / 0.35);
+  }
+  .gold-corners::after {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 1.5px solid hsl(var(--gold) / 0.35);
+    border-right: 1.5px solid hsl(var(--gold) / 0.35);
+  }
 
   /* Malachite section background */
   .malachite-section {
@@ -209,6 +223,14 @@
       transparent
     );
   }
+
+  /* Gold photo frame */
+  .gold-photo-frame {
+    border: 2px solid hsl(var(--gold) / 0.3);
+    box-shadow:
+      0 4px 20px hsl(var(--malachite-deep) / 0.2),
+      inset 0 0 30px hsl(var(--malachite-deep) / 0.1);
+  }
 }
 
 /* Gold dust particles */
@@ -227,4 +249,9 @@
 @keyframes mineral-glow {
   0%, 100% { box-shadow: 0 0 20px hsl(var(--crystal-glow) / 0.1); }
   50% { box-shadow: 0 0 40px hsl(var(--crystal-glow) / 0.2), 0 0 60px hsl(var(--gold) / 0.1); }
+}
+
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
