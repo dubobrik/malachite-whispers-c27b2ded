@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
 import * as THREE from "three";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ─── Procedural Malachite Texture ─── */
 function createMalachiteTexture(width = 512, height = 512): THREE.CanvasTexture {
@@ -503,63 +503,86 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
       setTimeout(() => setPhase("open"), 500),
       setTimeout(() => setPhase("glow"), 1300),
       setTimeout(() => setPhase("expand"), 1900),
-      setTimeout(() => setPhase("fade"), 2300),
-      setTimeout(onComplete, 2700),
+      setTimeout(() => setPhase("fade"), 2400),
+      setTimeout(onComplete, 3400),
     ];
     return () => t.forEach(clearTimeout);
   }, [onComplete]);
 
   const expanding = phase === "expand" || phase === "fade";
+  const fading = phase === "fade";
 
   return (
-    <AnimatePresence>
-      {phase !== "fade" ? (
-        <motion.div
-          className="fixed inset-0 z-[200]"
+    <motion.div
+      className="fixed inset-0 z-[200]"
+      style={{ background: "hsl(160, 30%, 3%)" }}
+      animate={{
+        opacity: fading ? 0 : 1,
+      }}
+      transition={{ duration: fading ? 1.0 : 0.3, ease: "easeInOut" }}
+    >
+      {/* Golden glow overlay — expands then fades with the whole preloader */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-10"
+        animate={{
+          opacity: fading ? 0 : expanding ? 0.8 : 0,
+          scale: fading ? 2.5 : expanding ? 1.5 : 1,
+        }}
+        transition={{ duration: fading ? 1.0 : 0.6, ease: "easeInOut" }}
+        style={{
+          background: "radial-gradient(ellipse 100% 80% at 50% 45%, hsl(43 76% 52% / 0.35) 0%, hsl(43 76% 52% / 0.08) 40%, transparent 70%)",
+        }}
+      />
+
+      {/* Smooth background blend — matches site background */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-[11]"
+        animate={{
+          opacity: fading ? 1 : expanding ? 0.3 : 0,
+        }}
+        transition={{ duration: fading ? 0.8 : 0.5, ease: "easeInOut" }}
+        style={{
+          background: "radial-gradient(ellipse 120% 100% at 50% 50%, hsl(160 30% 5% / 0.95) 0%, hsl(160 30% 3%) 100%)",
+        }}
+      />
+
+      {/* 3D Canvas */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          opacity: fading ? 0 : 1,
+          scale: fading ? 1.1 : 1,
+        }}
+        transition={{ duration: fading ? 0.8 : 0.3, ease: "easeOut" }}
+      >
+        <Canvas
+          camera={{ position: [0, 1.1, 5], fov: 32 }}
+          gl={{ antialias: true, alpha: false, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}
           style={{ background: "hsl(160, 30%, 3%)" }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.45 }}
+          dpr={[1, 1.5]}
+          shadows
         >
-          {/* Golden expansion overlay */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none z-10"
-            animate={{ opacity: expanding ? 0.7 : 0 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              background: "radial-gradient(ellipse 100% 80% at 50% 45%, hsl(43 76% 52% / 0.3) 0%, transparent 65%)",
-            }}
-          />
+          <Scene phase={phase} />
+        </Canvas>
+      </motion.div>
 
-          {/* 3D Canvas */}
-          <Canvas
-            camera={{ position: [0, 1.1, 5], fov: 32 }}
-            gl={{ antialias: true, alpha: false, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}
-            style={{ background: "hsl(160, 30%, 3%)" }}
-            dpr={[1, 1.5]}
-            shadows
-          >
-            <Scene phase={phase} />
-          </Canvas>
-
-          {/* Title */}
-          <motion.p
-            className="absolute bottom-[14%] left-1/2 -translate-x-1/2 font-display text-lg tracking-[0.25em] z-10 whitespace-nowrap"
-            style={{
-              background: "linear-gradient(135deg, hsl(43 76% 72%), hsl(43 76% 42%))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            animate={{
-              opacity: expanding ? 0 : phase !== "dark" ? 1 : 0,
-              y: phase !== "dark" ? 0 : 15,
-            }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Малахитовая шкатулка
-          </motion.p>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+      {/* Title */}
+      <motion.p
+        className="absolute bottom-[14%] left-1/2 -translate-x-1/2 font-display text-lg tracking-[0.25em] z-10 whitespace-nowrap"
+        style={{
+          background: "linear-gradient(135deg, hsl(43 76% 72%), hsl(43 76% 42%))",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+        animate={{
+          opacity: expanding ? 0 : phase !== "dark" ? 1 : 0,
+          y: phase !== "dark" ? 0 : 15,
+        }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        Малахитовая шкатулка
+      </motion.p>
+    </motion.div>
   );
 };
 
