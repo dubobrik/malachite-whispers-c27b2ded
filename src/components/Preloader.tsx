@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
 import * as THREE from "three";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ─── Procedural Malachite Texture ─── */
 function createMalachiteTexture(width = 512, height = 512): THREE.CanvasTexture {
