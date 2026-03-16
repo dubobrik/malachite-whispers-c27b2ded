@@ -23,15 +23,15 @@ const About = () => {
       </ParallaxLayer>
 
       {/* Content */}
-      <div className="container mx-auto max-w-6xl relative z-10 px-8 md:px-16 lg:px-24">
+      <div className="container mx-auto max-w-6xl relative z-10 px-6 sm:px-10 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-20 text-center md:text-left"
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
             <div className="w-8 h-px bg-accent/20" />
             <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
           </div>
@@ -47,14 +47,14 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-10 md:gap-20 items-center">
           {/* Left — Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative mx-auto md:mx-0 w-full max-w-[320px] md:max-w-none"
+            className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-none md:mx-0"
           >
             {/* Golden glow behind photo */}
             <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
@@ -77,7 +77,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="space-y-5"
+            className="space-y-5 text-center md:text-left"
           >
             {[
               "Я, Надежда Савельева, мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.",
@@ -89,7 +89,7 @@ const About = () => {
               </p>
             ))}
 
-            <div className="flex flex-wrap gap-3 pt-8">
+            <div className="flex flex-wrap gap-3 pt-8 justify-center md:justify-start">
               {[
                 { icon: GraduationCap, label: "Социолог" },
                 { icon: Award, label: "Психолог" },
