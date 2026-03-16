@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <Gem className="h-4 w-4 text-accent/25" />
             <span className="font-body text-xs text-foreground/30 tracking-wide">
-              © 2024 [Имя]. Все права защищены.
+              © 2024 Савельева Н.В. Все права защищены.
             </span>
             <img
               src={lizardDivider}
