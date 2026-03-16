@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MessageCircle, MessagesSquare, Mail, ExternalLink, Gem } from "lucide-react";
+import { MessageCircle, MessageSquare, Mail, ExternalLink, Gem } from "lucide-react";
 import lizardDivider from "@/assets/lizard-divider.png";
 
 const Footer = () => {
