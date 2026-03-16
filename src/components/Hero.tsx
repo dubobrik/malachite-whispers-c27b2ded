@@ -122,10 +122,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6 }}
-            className="flex flex-col items-center lg:items-start"
+            className="flex flex-col lg:flex-row lg:items-center gap-8 items-center lg:items-start"
           >
             {/* Photo */}
-            <div className="relative w-full max-w-[280px] xl:max-w-[320px] mb-8 mt-0 lg:mt-[60px]">
+            <div className="relative w-full max-w-[280px] xl:max-w-[320px] shrink-0 lg:self-center">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
                 <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 pointer-events-none" style={{
@@ -136,54 +136,57 @@ const Hero = () => {
               <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
             </div>
 
-            {/* About heading */}
-            <div className="mb-5">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-px bg-accent/20" />
-                <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
-              </div>
-              <h2 id="about" className="font-display text-2xl md:text-3xl font-bold"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%))',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                Обо мне
-              </h2>
-            </div>
-
-            {/* About text — full */}
-            <div className="font-body text-sm text-foreground/50 leading-[1.9] mb-6 space-y-4">
-              <p>
-                Я, Надежда Савельева, мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.
-              </p>
-              <p>
-                Сегодня за моими плечами многолетний опыт работы с людьми и несколько ступеней профессионального развития, включая коучинг. Но главный инструмент — не дипломы, а способность удерживать целостный взгляд. В моем подходе психология встречается с социологией, а Таро и метафорические карты становятся языком, на котором мы говорим с вашим подсознанием.
-              </p>
-              <p>
-                В моей работе есть то, что иногда называют магией. Только это не предсказания и не тайные знания, а способность видеть то, что скрыто от поверхностного взгляда. Когда психология, социология и язык символов складываются в цельную картину — решение приходит само. И оно всегда оказывается верным.
-              </p>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-3">
-              {[
-                { icon: GraduationCap, label: "Социолог" },
-                { icon: Award, label: "Психолог" },
-                { icon: BookOpen, label: "Таролог" },
-                { icon: Award, label: "Семейный консультант" },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="flex items-center gap-2 rounded-full border border-accent/10 px-4 py-2 transition-all duration-500 hover:border-accent/25"
-                  style={{ background: 'hsl(160 30% 5% / 0.5)' }}
-                >
-                  <c.icon className="h-3.5 w-3.5 text-accent/50" />
-                  <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
+            {/* About content */}
+            <div className="flex flex-col items-center lg:items-start">
+              {/* About heading */}
+              <div className="mb-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-px bg-accent/20" />
+                  <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
                 </div>
-              ))}
+                <h2 id="about" className="font-display text-2xl md:text-3xl font-bold"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  Обо мне
+                </h2>
+              </div>
+
+              {/* About text — full */}
+              <div className="font-body text-sm text-foreground/50 leading-[1.9] mb-6 space-y-4">
+                <p>
+                  Я, Надежда Савельева, мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.
+                </p>
+                <p>
+                  Сегодня за моими плечами многолетний опыт работы с людьми и несколько ступеней профессионального развития, включая коучинг. Но главный инструмент — не дипломы, а способность удерживать целостный взгляд. В моем подходе психология встречается с социологией, а Таро и метафорические карты становятся языком, на котором мы говорим с вашим подсознанием.
+                </p>
+                <p>
+                  В моей работе есть то, что иногда называют магией. Только это не предсказания и не тайные знания, а способность видеть то, что скрыто от поверхностного взгляда. Когда психология, социология и язык символов складываются в цельную картину — решение приходит само. И оно всегда оказывается верным.
+                </p>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { icon: GraduationCap, label: "Социолог" },
+                  { icon: Award, label: "Психолог" },
+                  { icon: BookOpen, label: "Таролог" },
+                  { icon: Award, label: "Семейный консультант" },
+                ].map((c) => (
+                  <div
+                    key={c.label}
+                    className="flex items-center gap-2 rounded-full border border-accent/10 px-4 py-2 transition-all duration-500 hover:border-accent/25"
+                    style={{ background: 'hsl(160 30% 5% / 0.5)' }}
+                  >
+                    <c.icon className="h-3.5 w-3.5 text-accent/50" />
+                    <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
