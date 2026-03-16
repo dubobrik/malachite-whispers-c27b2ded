@@ -123,10 +123,10 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.6 }}
-            className="order-1 lg:order-2 flex flex-col items-center lg:items-end lg:pr-8 lg:pt-4"
+            className="order-1 lg:order-2 flex flex-col items-center pt-6 lg:pt-10 lg:pr-12 xl:pr-16"
           >
             {/* Photo */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[300px] lg:max-w-[340px]">
+            <div className="relative w-full max-w-[260px] sm:max-w-[280px] lg:max-w-[320px]">
               <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
                 background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
                 filter: 'blur(20px)',
@@ -142,7 +142,7 @@ const Hero = () => {
             </div>
 
             {/* Short intro under photo */}
-            <div className="mt-8 max-w-[360px] text-center lg:text-right space-y-4">
+            <div className="mt-10 w-full max-w-[320px] text-center space-y-4">
               <p className="font-display text-lg text-accent/70 font-semibold">
                 Надежда Савельева
               </p>
@@ -155,7 +155,7 @@ const Hero = () => {
               <p className="font-body text-sm text-foreground/45 leading-[1.9]">
                 Это помогает увидеть ситуацию глубже и найти решение, которое действительно подходит именно вам.
               </p>
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-end pt-2">
+              <div className="flex flex-wrap gap-2 justify-center pt-2">
                 {[
                   { icon: GraduationCap, label: "Социолог" },
                   { icon: Award, label: "Психолог" },
@@ -171,7 +171,7 @@ const Hero = () => {
                   </div>
                 ))}
               </div>
-              <div className="pt-4 flex justify-center lg:justify-end">
+              <div className="pt-4 flex justify-center">
                 <a
                   href="#about"
                   onClick={(e) => {
