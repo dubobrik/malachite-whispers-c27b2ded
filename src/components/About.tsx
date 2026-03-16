@@ -31,7 +31,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="mb-12 md:mb-20 text-center md:text-left"
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
             <div className="w-8 h-px bg-accent/20" />
             <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
           </div>
