@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MessageCircle, Mail, ExternalLink, Gem } from "lucide-react";
+import { MessageCircle, MessagesSquare, Mail, ExternalLink, Gem } from "lucide-react";
 import lizardDivider from "@/assets/lizard-divider.png";
 
 const Footer = () => {
@@ -26,6 +26,7 @@ const Footer = () => {
           <div className="flex items-center gap-5">
             {[
               { href: "https://t.me/", icon: MessageCircle },
+              { href: "https://max.ru/", icon: MessagesSquare },
               { href: "https://vk.com/", icon: ExternalLink },
               { href: "mailto:example@email.com", icon: Mail },
             ].map((link) => (
