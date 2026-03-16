@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Approach from "@/components/Approach";
 import LizardDivider from "@/components/LizardDivider";
 import Services from "@/components/Services";
-import About from "@/components/About";
+
 import ReviewsLink from "@/components/ReviewsLink";
 import Contact from "@/components/Contact";
 import Donate from "@/components/Donate";
@@ -20,7 +20,7 @@ const Index = () => {
         <Approach />
         <LizardDivider />
         <Services />
-        <About />
+        
         <LizardDivider />
         <ReviewsLink />
         <Contact />
