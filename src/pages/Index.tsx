@@ -18,6 +18,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <About />
         <Approach />
         <LizardDivider />
         <Services />
