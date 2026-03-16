@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Send, MessageCircle, Mail, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
@@ -8,9 +9,11 @@ import ParallaxLayer from "./ParallaxLayer";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!consentChecked) return;
     setSubmitted(true);
   };
 
@@ -95,7 +98,7 @@ const Contact = () => {
                     <input type="text" name="name" required className={inputClass} placeholder="Ваше имя" />
                   </div>
                   <div>
-                    <label className="font-body text-xs text-foreground/40 mb-1.5 block tracking-wide uppercase">Контакт *</label>
+                    <label className="font-body text-xs text-foreground/40 mb-1.5 block tracking-wide uppercase">Контакт (Email, Telegram или VK) *</label>
                     <input type="text" name="contact" required className={inputClass} placeholder="Telegram, VK или Email" />
                   </div>
                 </div>
@@ -115,7 +118,37 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit" className="btn-gold w-full flex items-center justify-center gap-2.5 mt-2">
+                {/* Consent checkbox */}
+                <div className="pt-2 space-y-2">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={consentChecked}
+                      onChange={(e) => setConsentChecked(e.target.checked)}
+                      required
+                      className="mt-1 h-4 w-4 rounded border-accent/20 bg-transparent accent-accent shrink-0"
+                    />
+                    <span className="font-body text-xs text-foreground/35 leading-relaxed group-hover:text-foreground/50 transition-colors">
+                      Я даю согласие на обработку моих персональных данных и принимаю{" "}
+                      <Link
+                        to="/privacy-policy"
+                        target="_blank"
+                        className="text-accent/60 hover:text-accent underline underline-offset-2 decoration-accent/20"
+                      >
+                        политику обработки персональных данных
+                      </Link>.
+                    </span>
+                  </label>
+                  <p className="font-body text-[10px] text-foreground/20 ml-7">
+                    Собираемые данные: имя, контактные данные, предпочтения по услугам, комментарий.
+                  </p>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={!consentChecked}
+                  className="btn-gold w-full flex items-center justify-center gap-2.5 mt-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
                   <Send className="h-4 w-4" />
                   Отправить
                 </button>
@@ -156,7 +189,7 @@ const Contact = () => {
 
             <div className="mt-12 pt-8 border-t border-accent/6">
               <p className="font-body text-xs text-foreground/20 leading-relaxed">
-                Все данные конфиденциальны. Консультации проводятся онлайн через Zoom или Telegram.
+                Все данные конфиденциальны и обрабатываются в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Консультации проводятся онлайн через Zoom или Telegram.
               </p>
             </div>
           </motion.div>
