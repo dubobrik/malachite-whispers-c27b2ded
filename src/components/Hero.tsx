@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Award, BookOpen } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
 import ParallaxLayer from "./ParallaxLayer";
-import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const Hero = () => {
   return (
