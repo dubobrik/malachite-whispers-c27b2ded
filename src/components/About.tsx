@@ -4,23 +4,16 @@ import specialistPhoto from "@/assets/specialist-photo.jpg";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const About = () => {
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 50%',
-        opacity: 0.025,
-      }} />
+      {/* Semi-transparent overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 45% 50% at 25% 40%, hsl(160 45% 10% / 0.1) 0%, transparent 60%),
           radial-gradient(ellipse 35% 35% at 75% 60%, hsl(43 76% 52% / 0.03) 0%, transparent 50%),
-          linear-gradient(180deg, hsl(var(--background)) 0%, hsl(160 27% 5%) 50%, hsl(var(--background)) 100%)
+          linear-gradient(180deg, hsl(160 30% 4% / 0.3) 0%, hsl(160 27% 5% / 0.4) 50%, hsl(160 30% 4% / 0.3) 100%)
         `,
       }} />
 
@@ -31,7 +24,6 @@ const About = () => {
 
       {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +48,6 @@ const About = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 md:gap-16 items-start">
-          {/* Photo — clean framing, minimal ornaments */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -70,13 +61,10 @@ const About = () => {
                 background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
               }} />
             </div>
-
-            {/* Just two corner accents — not four */}
             <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
             <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
           </motion.div>
 
-          {/* Text */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}

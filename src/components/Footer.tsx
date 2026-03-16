@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <footer className="py-10 px-6 border-t border-accent/6"
-        style={{ background: 'linear-gradient(180deg, hsl(160 30% 4%), hsl(160 30% 3%))' }}>
+        style={{ background: 'linear-gradient(180deg, hsl(160 30% 4% / 0.6), hsl(160 30% 3% / 0.7))' }}>
         <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-3">
             <Gem className="h-4 w-4 text-accent/25" />

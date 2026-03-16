@@ -3,7 +3,6 @@ import { Quote } from "lucide-react";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const testimonials = [
   {
@@ -26,17 +25,11 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="py-20 md:py-32 px-6 md:px-10 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 70%',
-        opacity: 0.02,
-      }} />
+      {/* Semi-transparent overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 70% 50% at 50% 40%, hsl(160 40% 10% / 0.08) 0%, transparent 70%),
-          linear-gradient(180deg, hsl(160 22% 5.5%) 0%, hsl(160 20% 6.5%) 50%, hsl(160 22% 5.5%) 100%)
+          linear-gradient(180deg, hsl(160 22% 5.5% / 0.35) 0%, hsl(160 20% 6.5% / 0.4) 50%, hsl(160 22% 5.5% / 0.35) 100%)
         `,
       }} />
 
@@ -47,7 +40,6 @@ const Testimonials = () => {
 
       {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        {/* Header — right-aligned for variety */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,9 +63,7 @@ const Testimonials = () => {
           </h2>
         </motion.div>
 
-        {/* Staggered layout — not equal columns */}
         <div className="space-y-6">
-          {/* First testimonial — full width, editorial */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +82,6 @@ const Testimonials = () => {
             </div>
           </motion.div>
 
-          {/* Second and third — side by side, offset */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:pl-16">
             {testimonials.slice(1).map((t, i) => (
               <motion.div

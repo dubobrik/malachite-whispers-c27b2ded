@@ -3,7 +3,6 @@ import { Sparkles, Eye, Compass, HeartHandshake } from "lucide-react";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const services = [
   {
@@ -39,18 +38,12 @@ const services = [
 const Services = () => {
   return (
     <section id="uslugi" className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 60%',
-        opacity: 0.025,
-      }} />
+      {/* Semi-transparent overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 50% 40% at 30% 20%, hsl(160 45% 12% / 0.12) 0%, transparent 60%),
           radial-gradient(ellipse 50% 40% at 70% 80%, hsl(145 45% 14% / 0.1) 0%, transparent 60%),
-          linear-gradient(180deg, hsl(160 22% 6%) 0%, hsl(160 20% 7%) 50%, hsl(160 22% 6%) 100%)
+          linear-gradient(180deg, hsl(160 22% 6% / 0.35) 0%, hsl(160 20% 7% / 0.4) 50%, hsl(160 22% 6% / 0.35) 100%)
         `,
       }} />
 
@@ -61,7 +54,6 @@ const Services = () => {
 
       {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        {/* Header — left-aligned, no subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +83,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Featured first card — full width */}
+        {/* Featured first card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +131,7 @@ const Services = () => {
           </div>
         </motion.div>
 
-        {/* Remaining 3 cards — varied grid */}
+        {/* Remaining 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.slice(1).map((s, i) => (
             <motion.div

@@ -4,22 +4,15 @@ import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Approach = () => {
   return (
     <section className="py-20 md:py-28 px-6 md:px-10 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 30%',
-        opacity: 0.03,
-      }} />
+      {/* Semi-transparent overlay to let global malachite texture show */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 60% 50% at 50% 50%, hsl(160 45% 10% / 0.15) 0%, transparent 70%),
-          linear-gradient(180deg, hsl(var(--background)) 0%, hsl(160 28% 5%) 50%, hsl(var(--background)) 100%)
+          linear-gradient(180deg, hsl(160 30% 4% / 0.3) 0%, hsl(160 28% 5% / 0.4) 50%, hsl(160 30% 4% / 0.3) 100%)
         `,
       }} />
 
@@ -29,10 +22,9 @@ const Approach = () => {
         <GoldParticles count={4} />
       </ParallaxLayer>
 
-      {/* Content — asymmetric editorial layout */}
+      {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 items-start">
-          {/* Left: label column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +51,6 @@ const Approach = () => {
             </p>
           </motion.div>
 
-          {/* Right: content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
