@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
@@ -9,19 +8,14 @@ const Hero = () => {
   return (
     <section
       className="relative min-h-[110vh] flex items-center overflow-hidden"
-      style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
-      {/* Deep layered overlay */}
+      {/* Deep layered overlay — semi-transparent to let global texture through */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 50% 45% at 50% 48%, hsl(160 50% 10% / 0.3) 0%, transparent 70%),
           radial-gradient(ellipse 80% 60% at 20% 80%, hsl(270 25% 8% / 0.1) 0%, transparent 50%),
           radial-gradient(ellipse 80% 60% at 80% 20%, hsl(160 35% 8% / 0.1) 0%, transparent 50%),
-          linear-gradient(180deg, hsl(160 30% 3% / 0.94) 0%, hsl(160 30% 4% / 0.8) 40%, hsl(160 30% 4% / 0.85) 65%, hsl(160 30% 3% / 0.96) 100%)
+          linear-gradient(180deg, hsl(160 30% 3% / 0.6) 0%, hsl(160 30% 4% / 0.4) 40%, hsl(160 30% 4% / 0.45) 65%, hsl(160 30% 3% / 0.6) 100%)
         `,
       }} />
 
@@ -88,7 +82,7 @@ const Hero = () => {
             подход к&nbsp;жизни
           </motion.h1>
 
-          {/* Body text — not a subtitle, but an actual introduction */}
+          {/* Body text */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +113,7 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right-side vertical accent — editorial detail */}
+        {/* Right-side vertical accent */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -156,11 +150,11 @@ const Hero = () => {
 
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, hsl(var(--background)), transparent)' }} />
+        style={{ background: 'linear-gradient(to top, hsl(160 30% 4% / 0.5), transparent)' }} />
 
       {/* Top vignette */}
       <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, hsl(160 30% 3% / 0.6), transparent)' }} />
+        style={{ background: 'linear-gradient(to bottom, hsl(160 30% 3% / 0.4), transparent)' }} />
     </section>
   );
 };

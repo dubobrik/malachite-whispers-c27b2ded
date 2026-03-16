@@ -71,11 +71,31 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
-    background-image:
-      radial-gradient(ellipse at 15% 30%, hsl(var(--malachite) / 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 15%, hsl(var(--gold) / 0.03) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, hsl(var(--emerald-dark) / 0.05) 0%, transparent 50%);
+    @apply text-foreground font-body antialiased;
+    background-color: hsl(160 30% 4%);
+    background-image: url('./assets/malachite-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 15% 30%, hsl(var(--malachite) / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, hsl(var(--gold) / 0.04) 0%, transparent 40%),
+      hsl(160 30% 4% / 0.55);
+  }
+
+  body > #root {
+    position: relative;
+    z-index: 1;
   }
 
   h1, h2, h3, h4, h5, h6 {

@@ -5,7 +5,6 @@ import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
-import malachiteTexture from "@/assets/malachite-texture.jpg";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -20,18 +19,12 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `url(${malachiteTexture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 80%',
-        opacity: 0.03,
-      }} />
+      {/* Semi-transparent overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 45% 45% at 35% 30%, hsl(160 45% 12% / 0.12) 0%, transparent 60%),
           radial-gradient(ellipse 35% 35% at 65% 70%, hsl(43 76% 52% / 0.03) 0%, transparent 50%),
-          linear-gradient(180deg, hsl(var(--background)) 0%, hsl(160 27% 4.5%) 50%, hsl(var(--background)) 100%)
+          linear-gradient(180deg, hsl(160 30% 4% / 0.3) 0%, hsl(160 27% 4.5% / 0.4) 50%, hsl(160 30% 4% / 0.3) 100%)
         `,
       }} />
 
@@ -43,7 +36,6 @@ const Contact = () => {
 
       {/* Content */}
       <div className="container mx-auto max-w-5xl relative z-10">
-        {/* Header — centered for contact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +154,6 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Trust note */}
             <div className="mt-12 pt-8 border-t border-accent/6">
               <p className="font-body text-xs text-foreground/20 leading-relaxed">
                 Все данные конфиденциальны. Консультации проводятся онлайн через Zoom или Telegram.
