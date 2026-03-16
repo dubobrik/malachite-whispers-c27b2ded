@@ -25,9 +25,9 @@ const Footer = () => {
 
           <div className="flex items-center gap-5">
             {[
-              { href: "https://t.me/", icon: MessageCircle },
-              { href: "https://max.ru/", icon: MessageSquare },
-              { href: "https://vk.com/", icon: ExternalLink },
+              { href: "https://t.me/SavaNadiVik8", icon: MessageCircle },
+              { href: "https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM", icon: MessageSquare },
+              { href: "https://vk.com/id1097656613", icon: ExternalLink },
               { href: "mailto:example@email.com", icon: Mail },
             ].map((link) => (
               <a

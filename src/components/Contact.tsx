@@ -169,9 +169,9 @@ const Contact = () => {
 
             <div className="space-y-1">
               {[
-              { href: "https://t.me/", icon: MessageCircle, label: "Telegram" },
-                { href: "https://max.ru/", icon: MessageSquare, label: "MAX" },
-                { href: "https://vk.com/", icon: ExternalLink, label: "ВКонтакте" },
+                { href: "https://t.me/SavaNadiVik8", icon: MessageCircle, label: "Telegram" },
+                { href: "https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM", icon: MessageSquare, label: "MAX" },
+                { href: "https://vk.com/id1097656613", icon: ExternalLink, label: "ВКонтакте" },
                 { href: "mailto:example@email.com", icon: Mail, label: "Email" },
               ].map((link) => (
                 <a
