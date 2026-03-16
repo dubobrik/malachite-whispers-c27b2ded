@@ -4,7 +4,7 @@ import Approach from "@/components/Approach";
 import LizardDivider from "@/components/LizardDivider";
 import Services from "@/components/Services";
 import About from "@/components/About";
-import Testimonials from "@/components/Testimonials";
+import ReviewsLink from "@/components/ReviewsLink";
 import Contact from "@/components/Contact";
 import Donate from "@/components/Donate";
 import Footer from "@/components/Footer";
