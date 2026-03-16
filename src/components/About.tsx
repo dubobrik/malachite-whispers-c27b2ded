@@ -29,7 +29,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-20 text-center md:text-left"
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-accent/20" />
