@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Send, MessageCircle, Mail, ExternalLink } from "lucide-react";
+import { Send, MessageCircle, MessagesSquare, Mail, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import GoldParticles from "./GoldParticles";
 import SectionDecor from "./SectionDecor";
