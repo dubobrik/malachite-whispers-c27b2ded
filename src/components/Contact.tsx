@@ -82,15 +82,6 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="gold-border-card space-y-5">
                 <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
-                <div>
-                  <label className="font-body text-xs text-foreground/40 mb-1.5 block tracking-wide uppercase">Услуга</label>
-                  <select id="service-select" name="service" className={inputClass}>
-                    <option value="Таролог">Таролог</option>
-                    <option value="Социолог">Социолог</option>
-                    <option value="Коуч">Коуч</option>
-                    <option value="Семейный психолог">Семейный психолог</option>
-                  </select>
-                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
