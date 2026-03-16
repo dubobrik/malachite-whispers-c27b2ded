@@ -89,7 +89,7 @@ const About = () => {
               </p>
             ))}
 
-            <div className="flex flex-wrap gap-3 pt-8">
+            <div className="flex flex-wrap gap-3 pt-8 justify-center md:justify-start">
               {[
                 { icon: GraduationCap, label: "Социолог" },
                 { icon: Award, label: "Психолог" },
