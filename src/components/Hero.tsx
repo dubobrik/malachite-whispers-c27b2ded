@@ -171,6 +171,19 @@ const Hero = () => {
                   </div>
                 ))}
               </div>
+              <div className="pt-4 flex justify-center lg:justify-end">
+                <a
+                  href="#about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="font-body text-sm text-accent/60 hover:text-accent transition-colors duration-500 flex items-center gap-2 group"
+                >
+                  <span className="tracking-wide">Мой путь</span>
+                  <span className="inline-block transition-transform duration-500 group-hover:translate-y-0.5">↓</span>
+                </a>
+              </div>
             </div>
           </motion.div>
 
