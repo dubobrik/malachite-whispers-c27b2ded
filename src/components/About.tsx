@@ -23,7 +23,7 @@ const About = () => {
       </ParallaxLayer>
 
       {/* Content */}
-      <div className="container mx-auto max-w-5xl relative z-10">
+      <div className="container mx-auto max-w-6xl relative z-10 px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,14 +47,20 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-16 items-center">
+          {/* Left — Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative mx-auto md:mx-0 w-full max-w-[320px] md:max-w-none"
           >
+            {/* Golden glow behind photo */}
+            <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
+              background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
+              filter: 'blur(20px)',
+            }} />
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
               <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
               <div className="absolute inset-0 pointer-events-none" style={{
@@ -65,6 +71,7 @@ const About = () => {
             <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
           </motion.div>
 
+          {/* Right — Text */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +80,7 @@ const About = () => {
             className="space-y-5"
           >
             {[
-              "Мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.",
+              "Я, Надежда Савельева, мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.",
               "Сегодня за моими плечами многолетний опыт работы с людьми и несколько ступеней профессионального развития, включая коучинг. Но главный инструмент — не дипломы, а способность удерживать целостный взгляд. В моем подходе психология встречается с социологией, а Таро и метафорические карты становятся языком, на котором мы говорим с вашим подсознанием.",
               "В моей работе есть то, что иногда называют магией. Только это не предсказания и не тайные знания, а способность видеть то, что скрыто от поверхностного взгляда. Когда психология, социология и язык символов складываются в цельную картину — решение приходит само. И оно всегда оказывается верным.",
             ].map((text, i) => (
@@ -87,6 +94,7 @@ const About = () => {
                 { icon: GraduationCap, label: "Социолог" },
                 { icon: Award, label: "Психолог" },
                 { icon: BookOpen, label: "Таролог" },
+                { icon: Award, label: "Семейный консультант" },
               ].map((c) => (
                 <div
                   key={c.label}
