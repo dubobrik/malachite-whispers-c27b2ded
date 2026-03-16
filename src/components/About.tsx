@@ -23,7 +23,7 @@ const About = () => {
       </ParallaxLayer>
 
       {/* Content */}
-      <div className="container mx-auto max-w-6xl relative z-10 px-6 md:px-12">
+      <div className="container mx-auto max-w-6xl relative z-10 px-8 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-20 items-center">
           {/* Left — Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
