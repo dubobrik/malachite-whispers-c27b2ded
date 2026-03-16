@@ -98,7 +98,7 @@ const Contact = () => {
                     <input type="text" name="name" required className={inputClass} placeholder="Ваше имя" />
                   </div>
                   <div>
-                    <label className="font-body text-xs text-foreground/40 mb-1.5 block tracking-wide uppercase">Контакт (Email, Telegram или VK) *</label>
+                    <label className="font-body text-xs text-foreground/40 mb-1.5 block tracking-wide uppercase">Контакт (Email, Telegram, VK, MAX или телефон) *</label>
                     <input type="text" name="contact" required className={inputClass} placeholder="Telegram, VK или Email" />
                   </div>
                 </div>
