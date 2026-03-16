@@ -114,9 +114,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* About me — full-width two-column section */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 hidden lg:block" style={{ transform: 'translateY(100%)' }}>
-      </div>
 
       {/* Scroll indicator */}
       <motion.div

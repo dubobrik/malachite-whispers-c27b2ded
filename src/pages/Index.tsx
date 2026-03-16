@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
 import Approach from "@/components/Approach";
 import LizardDivider from "@/components/LizardDivider";
 import Services from "@/components/Services";
