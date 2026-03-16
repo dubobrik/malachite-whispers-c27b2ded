@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
+import Donate from "@/components/Donate";
 import Footer from "@/components/Footer";
 import AmbientAtmosphere from "@/components/AmbientAtmosphere";
 
@@ -23,6 +24,7 @@ const Index = () => {
         <LizardDivider />
         <Testimonials />
         <Contact />
+        <Donate />
       </main>
       <Footer />
     </>
