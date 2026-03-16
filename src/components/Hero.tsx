@@ -131,14 +131,19 @@ const Hero = () => {
                 background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
                 filter: 'blur(20px)',
               }} />
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
-                <img src={specialistPhoto} alt="Надежда Савельева — специалист" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 pointer-events-none" style={{
-                  background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
-                }} />
+              {/* Golden frame */}
+              <div className="relative rounded-2xl p-[1.5px]" style={{
+                background: 'linear-gradient(145deg, hsl(43 76% 58% / 0.45), hsl(43 76% 42% / 0.15) 40%, hsl(43 76% 58% / 0.3) 70%, hsl(43 76% 42% / 0.1))',
+              }}>
+                <div className="relative aspect-[3/4] rounded-[14px] overflow-hidden">
+                  <img src={specialistPhoto} alt="Надежда Савельева — специалист" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 pointer-events-none" style={{
+                    background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
+                  }} />
+                </div>
               </div>
-              <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
+              <div className="absolute -top-3 -left-3 w-10 h-10 border-t border-l rounded-tl-lg pointer-events-none" style={{ borderColor: 'hsl(43 76% 52% / 0.18)' }} />
+              <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b border-r rounded-br-lg pointer-events-none" style={{ borderColor: 'hsl(43 76% 52% / 0.18)' }} />
             </div>
 
             {/* Short intro under photo */}
