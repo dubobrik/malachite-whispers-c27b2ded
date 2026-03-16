@@ -142,12 +142,18 @@ const Hero = () => {
             </div>
 
             {/* Short intro under photo */}
-            <div className="mt-8 max-w-[340px] text-center lg:text-right space-y-4">
+            <div className="mt-8 max-w-[360px] text-center lg:text-right space-y-4">
               <p className="font-display text-lg text-accent/70 font-semibold">
                 Надежда Савельева
               </p>
-              <p className="font-body text-sm text-foreground/45 leading-[1.8]">
-                Специалист по социальной работе, психолог, таролог и семейный консультант с многолетним опытом помогающих практик.
+              <p className="font-body text-sm text-foreground/45 leading-[1.9]">
+                Я, Надежда Савельева — специалист по социальной работе, коуч и исследователь человеческих процессов.
+              </p>
+              <p className="font-body text-sm text-foreground/45 leading-[1.9]">
+                В своей работе я соединяю психологию, социологию и язык символов — Таро и метафорические карты.
+              </p>
+              <p className="font-body text-sm text-foreground/45 leading-[1.9]">
+                Это помогает увидеть ситуацию глубже и найти решение, которое действительно подходит именно вам.
               </p>
               <div className="flex flex-wrap gap-2 justify-center lg:justify-end pt-2">
                 {[
