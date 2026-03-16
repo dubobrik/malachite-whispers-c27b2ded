@@ -125,7 +125,7 @@ const Hero = () => {
             className="flex flex-col items-center lg:items-start"
           >
             {/* Photo */}
-            <div className="relative w-full max-w-[280px] xl:max-w-[320px] mb-8">
+            <div className="relative w-full max-w-[280px] xl:max-w-[320px] mb-8 mt-0 lg:mt-[60px]">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
                 <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 pointer-events-none" style={{
