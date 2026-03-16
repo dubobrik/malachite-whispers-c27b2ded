@@ -126,6 +126,11 @@ const Hero = () => {
           >
             {/* Photo */}
             <div className="relative w-full max-w-[280px] xl:max-w-[320px] shrink-0 lg:self-center">
+              {/* Golden glow behind photo */}
+              <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
+                background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
+                filter: 'blur(20px)',
+              }} />
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
                 <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 pointer-events-none" style={{
