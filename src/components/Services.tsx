@@ -6,11 +6,11 @@ import ParallaxLayer from "./ParallaxLayer";
 
 const services = [
   {
-    title: "Таролог",
-    icon: Sparkles,
-    desc: "Расклады на картах Таро для самопознания, принятия решений и работы с отношениями",
-    param: "Таролог",
-    accentColor: 'hsl(43 76% 52%)',
+    title: "Коуч",
+    icon: Compass,
+    desc: "Индивидуальный коучинг — цели, карьера, групповые программы",
+    param: "Коуч",
+    accentColor: 'hsl(270 40% 55%)',
   },
   {
     title: "Социолог",
@@ -20,11 +20,11 @@ const services = [
     accentColor: 'hsl(160 55% 40%)',
   },
   {
-    title: "Коуч",
-    icon: Compass,
-    desc: "Индивидуальный коучинг — цели, карьера, групповые программы",
-    param: "Коуч",
-    accentColor: 'hsl(270 40% 55%)',
+    title: "Таролог",
+    icon: Sparkles,
+    desc: "Расклады на картах Таро для самопознания, принятия решений и работы с отношениями",
+    param: "Таролог",
+    accentColor: 'hsl(43 76% 52%)',
   },
   {
     title: "Семейный консультант",
