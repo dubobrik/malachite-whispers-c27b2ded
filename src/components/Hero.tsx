@@ -122,7 +122,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6 }}
-            className="flex flex-col lg:flex-row lg:items-center gap-8 items-center lg:items-start"
+            className="flex flex-col lg:flex-row lg:items-center gap-8 items-center lg:items-start py-10 md:py-16"
           >
             {/* Photo */}
             <div className="relative w-full max-w-[280px] xl:max-w-[320px] shrink-0 lg:self-center">
