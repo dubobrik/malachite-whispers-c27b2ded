@@ -26,6 +26,7 @@ const Footer = () => {
           <div className="flex items-center gap-5">
             {[
               { href: "https://t.me/", icon: MessageCircle },
+              { href: "https://max.ru/", icon: MessagesSquare },
               { href: "https://vk.com/", icon: ExternalLink },
               { href: "mailto:example@email.com", icon: Mail },
             ].map((link) => (
