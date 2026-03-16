@@ -170,7 +170,7 @@ const Contact = () => {
             <div className="space-y-1">
               {[
               { href: "https://t.me/", icon: MessageCircle, label: "Telegram" },
-                { href: "https://max.ru/", icon: MessagesSquare, label: "MAX" },
+                { href: "https://max.ru/", icon: MessageSquare, label: "MAX" },
                 { href: "https://vk.com/", icon: ExternalLink, label: "ВКонтакте" },
                 { href: "mailto:example@email.com", icon: Mail, label: "Email" },
               ].map((link) => (
