@@ -69,6 +69,17 @@ const Approach = () => {
                 </p>
               ))}
             </div>
+            <div className="mt-8">
+              <a
+                href="#kontakt"
+                className="inline-flex items-center justify-center px-8 py-3 font-display text-sm tracking-wider uppercase rounded-sm border border-accent/30 text-accent hover:bg-accent/10 transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(43 76% 68% / 0.1), hsl(43 76% 45% / 0.05))',
+                }}
+              >
+                Записаться
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
