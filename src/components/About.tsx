@@ -54,7 +54,7 @@ const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative mx-auto md:mx-0 w-full max-w-[320px] md:max-w-none"
+            className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-none md:mx-0"
           >
             {/* Golden glow behind photo */}
             <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
