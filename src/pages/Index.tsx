@@ -22,7 +22,7 @@ const Index = () => {
         <Services />
         <About />
         <LizardDivider />
-        <Testimonials />
+        <ReviewsLink />
         <Contact />
         <Donate />
       </main>
