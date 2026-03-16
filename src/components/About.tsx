@@ -1,14 +1,26 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
-import specialistPhoto from "@/assets/specialist-photo.jpg";
 import SectionDecor from "./SectionDecor";
 import FantasyDecor from "./FantasyDecor";
 import ParallaxLayer from "./ParallaxLayer";
 
+const paragraphs = [
+  "Мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который даёт мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живёт человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.",
+  "Сегодня за моими плечами многолетний опыт работы с людьми и несколько ступеней профессионального развития, включая коучинг. Но главный инструмент — не дипломы, а способность удерживать целостный взгляд. В моём подходе психология встречается с социологией, а Таро и метафорические карты становятся языком, на котором мы говорим с вашим подсознанием.",
+  "В моей работе есть то, что иногда называют магией. Только это не предсказания и не тайные знания, а способность видеть то, что скрыто от поверхностного взгляда. Когда психология, социология и язык символов складываются в цельную картину — решение приходит само. И оно всегда оказывается верным.",
+];
+
+const credentials = [
+  { icon: GraduationCap, label: "Социолог" },
+  { icon: Award, label: "Психолог" },
+  { icon: BookOpen, label: "Таролог" },
+  { icon: Award, label: "Семейный консультант" },
+];
+
 const About = () => {
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
-      {/* Semi-transparent overlay */}
+    <section id="about" className="relative overflow-hidden py-28 md:py-40">
+      {/* Ambient overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 45% 50% at 25% 40%, hsl(160 45% 10% / 0.1) 0%, transparent 60%),
@@ -22,18 +34,19 @@ const About = () => {
         <FantasyDecor variant="about" />
       </ParallaxLayer>
 
-      {/* Content */}
-      <div className="container mx-auto max-w-6xl relative z-10 px-6 sm:px-10 md:px-16 lg:px-24">
+      <div className="container mx-auto max-w-3xl relative z-10 px-6 sm:px-10 md:px-16">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-20 text-center md:text-left"
+          className="text-center mb-16 md:mb-24"
         >
-          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
+          <div className="flex items-center gap-3 mb-5 justify-center">
             <div className="w-8 h-px bg-accent/20" />
             <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
+            <div className="w-8 h-px bg-accent/20" />
           </div>
           <h2 className="font-display text-3xl md:text-5xl font-bold"
             style={{
@@ -47,67 +60,51 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-10 md:gap-20 items-center">
-          {/* Left — Photo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-none md:mx-0"
-          >
-            {/* Golden glow behind photo */}
-            <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
-              background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
-              filter: 'blur(20px)',
-            }} />
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
-              <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
-              }} />
-            </div>
-            <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
-            <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
-          </motion.div>
-
-          {/* Right — Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="space-y-5 text-center md:text-left"
-          >
-            {[
-              "Я, Надежда Савельева, мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек. Я вижу не только внутренние процессы, но и контекст вашей жизни — это позволяет работать глубже и бережнее.",
-              "Сегодня за моими плечами многолетний опыт работы с людьми и несколько ступеней профессионального развития, включая коучинг. Но главный инструмент — не дипломы, а способность удерживать целостный взгляд. В моем подходе психология встречается с социологией, а Таро и метафорические карты становятся языком, на котором мы говорим с вашим подсознанием.",
-              "В моей работе есть то, что иногда называют магией. Только это не предсказания и не тайные знания, а способность видеть то, что скрыто от поверхностного взгляда. Когда психология, социология и язык символов складываются в цельную картину — решение приходит само. И оно всегда оказывается верным.",
-            ].map((text, i) => (
-              <p key={i} className="font-body text-foreground/60 leading-[1.9]">
-                {text}
-              </p>
-            ))}
-
-            <div className="flex flex-wrap gap-3 pt-8 justify-center md:justify-start">
-              {[
-                { icon: GraduationCap, label: "Социолог" },
-                { icon: Award, label: "Психолог" },
-                { icon: BookOpen, label: "Таролог" },
-                { icon: Award, label: "Семейный консультант" },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="flex items-center gap-2 rounded-full border border-accent/10 px-4 py-2 transition-all duration-500 hover:border-accent/25"
-                  style={{ background: 'hsl(160 30% 5% / 0.5)' }}
-                >
-                  <c.icon className="h-3.5 w-3.5 text-accent/50" />
-                  <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        {/* Biography paragraphs */}
+        <div className="space-y-8 md:space-y-10">
+          {paragraphs.map((text, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.12 }}
+              className="font-body text-base md:text-lg text-foreground/55 leading-[2] md:leading-[2.1]"
+            >
+              {text}
+            </motion.p>
+          ))}
         </div>
+
+        {/* Decorative divider */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="my-14 md:my-20 mx-auto w-32 h-px"
+          style={{ background: 'linear-gradient(90deg, transparent, hsl(43 76% 52% / 0.25), transparent)' }}
+        />
+
+        {/* Credential tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="flex flex-wrap gap-3 justify-center"
+        >
+          {credentials.map((c) => (
+            <div
+              key={c.label}
+              className="flex items-center gap-2 rounded-full border border-accent/10 px-5 py-2.5 transition-all duration-500 hover:border-accent/25"
+              style={{ background: 'hsl(160 30% 5% / 0.5)' }}
+            >
+              <c.icon className="h-3.5 w-3.5 text-accent/50" />
+              <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
