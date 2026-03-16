@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { GraduationCap, Award, BookOpen } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
 import ParallaxLayer from "./ParallaxLayer";
+import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const Hero = () => {
   return (
@@ -47,9 +49,12 @@ const Hero = () => {
       <div className="absolute bottom-24 right-12 w-20 h-20 pointer-events-none hidden md:block"
         style={{ borderBottom: '1px solid hsl(43 76% 52% / 0.1)', borderRight: '1px solid hsl(43 76% 52% / 0.1)' }} />
 
-      {/* Content — hero text centered */}
-      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="max-w-3xl mx-auto text-center lg:text-left lg:mx-0">
+      {/* Content — two-column layout */}
+      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 pt-24 md:pt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Left column — headline, description, CTA */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
             {/* Small label */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -111,9 +116,60 @@ const Hero = () => {
                 <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">→</span>
               </a>
             </motion.div>
+          </div>
+
+          {/* Right column — photo + short about */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.6 }}
+            className="order-1 lg:order-2 flex flex-col items-center lg:items-end lg:pr-8 lg:pt-4"
+          >
+            {/* Photo */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[300px] lg:max-w-[340px]">
+              <div className="absolute -inset-8 rounded-full pointer-events-none" style={{
+                background: 'radial-gradient(ellipse at 50% 50%, hsl(43 76% 58% / 0.12) 0%, hsl(43 76% 50% / 0.05) 40%, transparent 70%)',
+                filter: 'blur(20px)',
+              }} />
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
+                <img src={specialistPhoto} alt="Надежда Савельева — специалист" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
+                }} />
+              </div>
+              <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
+            </div>
+
+            {/* Short intro under photo */}
+            <div className="mt-8 max-w-[340px] text-center lg:text-right space-y-4">
+              <p className="font-display text-lg text-accent/70 font-semibold">
+                Надежда Савельева
+              </p>
+              <p className="font-body text-sm text-foreground/45 leading-[1.8]">
+                Специалист по социальной работе, психолог, таролог и семейный консультант с многолетним опытом помогающих практик.
+              </p>
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-end pt-2">
+                {[
+                  { icon: GraduationCap, label: "Социолог" },
+                  { icon: Award, label: "Психолог" },
+                  { icon: BookOpen, label: "Таролог" },
+                ].map((c) => (
+                  <div
+                    key={c.label}
+                    className="flex items-center gap-1.5 rounded-full border border-accent/10 px-3 py-1.5"
+                    style={{ background: 'hsl(160 30% 5% / 0.5)' }}
+                  >
+                    <c.icon className="h-3 w-3 text-accent/50" />
+                    <span className="font-body text-[11px] text-foreground/40 tracking-wide">{c.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
-
 
       {/* Scroll indicator */}
       <motion.div
