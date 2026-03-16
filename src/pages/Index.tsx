@@ -20,7 +20,7 @@ const Index = () => {
         <Approach />
         <LizardDivider />
         <Services />
-        <About />
+        
         <LizardDivider />
         <ReviewsLink />
         <Contact />

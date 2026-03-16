@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
+import { GraduationCap, Award, BookOpen } from "lucide-react";
 import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
 import ParallaxLayer from "./ParallaxLayer";
+import specialistPhoto from "@/assets/specialist-photo.jpg";
 
 const Hero = () => {
   return (
     <section
       className="relative min-h-[110vh] flex items-center overflow-hidden"
     >
-      {/* Deep layered overlay — semi-transparent to let global texture through */}
+      {/* Deep layered overlay */}
       <div className="absolute inset-0" style={{
         background: `
           radial-gradient(ellipse 50% 45% at 50% 48%, hsl(160 50% 10% / 0.3) 0%, transparent 70%),
@@ -41,91 +43,141 @@ const Hero = () => {
         <MagicalDust count={8} />
       </ParallaxLayer>
 
-      {/* Subtle frame — only two corners, not a full box */}
+      {/* Subtle frame corners */}
       <div className="absolute top-24 left-12 w-20 h-20 pointer-events-none hidden md:block"
         style={{ borderTop: '1px solid hsl(43 76% 52% / 0.1)', borderLeft: '1px solid hsl(43 76% 52% / 0.1)' }} />
       <div className="absolute bottom-24 right-12 w-20 h-20 pointer-events-none hidden md:block"
         style={{ borderBottom: '1px solid hsl(43 76% 52% / 0.1)', borderRight: '1px solid hsl(43 76% 52% / 0.1)' }} />
 
-      {/* Content — left-aligned editorial layout */}
+      {/* Content — two-column layout */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="max-w-3xl">
-          {/* Small label */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="flex items-center gap-4 mb-10"
-          >
-            <div className="w-12 h-px" style={{ background: 'linear-gradient(90deg, hsl(43 76% 52% / 0.4), transparent)' }} />
-            <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/50">
-              Таро · Психология · Коучинг
-            </span>
-          </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left column — hero text */}
+          <div className="max-w-2xl">
+            {/* Small label */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="flex items-center gap-4 mb-10"
+            >
+              <div className="w-12 h-px" style={{ background: 'linear-gradient(90deg, hsl(43 76% 52% / 0.4), transparent)' }} />
+              <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/50">
+                Таро · Психология · Коучинг
+              </span>
+            </motion.div>
 
-          {/* Title */}
-          <motion.h1
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
+              className="font-display text-5xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] font-bold leading-[1.05] mb-8"
+              style={{
+                background: 'linear-gradient(145deg, hsl(43 76% 74%), hsl(43 76% 50%), hsl(43 70% 62%))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 3px 12px hsl(43 76% 52% / 0.1))',
+              }}
+            >
+              Интегральный
+              <br />
+              подход к&nbsp;жизни
+            </motion.h1>
+
+            {/* Body text */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="font-body text-lg md:text-xl text-foreground/50 mb-14 max-w-lg leading-[1.8]"
+            >
+              Помогаю найти опору и ответы через глубину традиций,
+              символический язык и ясность знания
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.1 }}
+              className="flex flex-wrap items-center gap-6"
+            >
+              <a href="#contact" className="btn-gold text-base px-10 py-4">
+                Записаться
+              </a>
+              <a
+                href="#uslugi"
+                className="font-body text-sm text-foreground/40 hover:text-accent transition-colors duration-500 flex items-center gap-3 group"
+              >
+                <span className="tracking-wide">Узнать подробнее</span>
+                <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right column — About block */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
-            className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.05] mb-8"
-            style={{
-              background: 'linear-gradient(145deg, hsl(43 76% 74%), hsl(43 76% 50%), hsl(43 70% 62%))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 3px 12px hsl(43 76% 52% / 0.1))',
-            }}
+            transition={{ duration: 1.2, delay: 0.6 }}
+            className="flex flex-col items-center lg:items-start"
           >
-            Интегральный
-            <br />
-            подход к&nbsp;жизни
-          </motion.h1>
+            {/* Photo */}
+            <div className="relative w-full max-w-[280px] xl:max-w-[320px] mb-8">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden gold-photo-frame">
+                <img src={specialistPhoto} alt="Фото специалиста" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, hsl(160 30% 4% / 0.25) 100%)',
+                }} />
+              </div>
+              <div className="absolute -top-2 -left-2 w-10 h-10 border-t border-l border-accent/20 rounded-tl-lg" />
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 border-b border-r border-accent/20 rounded-br-lg" />
+            </div>
 
-          {/* Body text */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="font-body text-lg md:text-xl text-foreground/50 mb-14 max-w-lg leading-[1.8]"
-          >
-            Помогаю найти опору и ответы через глубину традиций,
-            символический язык и ясность знания
-          </motion.p>
+            {/* About heading */}
+            <div className="mb-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-px bg-accent/20" />
+                <span className="font-body text-[11px] uppercase tracking-[0.3em] text-accent/40">О специалисте</span>
+              </div>
+              <h2 id="about" className="font-display text-2xl md:text-3xl font-bold"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(43 76% 68%), hsl(43 76% 45%))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Обо мне
+              </h2>
+            </div>
 
-          {/* CTA row */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="flex flex-wrap items-center gap-6"
-          >
-            <a href="#contact" className="btn-gold text-base px-10 py-4">
-              Записаться
-            </a>
-            <a
-              href="#uslugi"
-              className="font-body text-sm text-foreground/40 hover:text-accent transition-colors duration-500 flex items-center gap-3 group"
-            >
-              <span className="tracking-wide">Узнать подробнее</span>
-              <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">→</span>
-            </a>
+            {/* About text — condensed for hero */}
+            <p className="font-body text-sm text-foreground/50 leading-[1.9] mb-6">
+              Мой путь в помогающих практиках начался с классического образования — я специалист по социальной работе. За этим стоит фундамент, который дает мне объёмную оптику: социология, психология, религиоведение, понимание систем, в которых живет человек.
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-3">
+              {[
+                { icon: GraduationCap, label: "Социолог" },
+                { icon: Award, label: "Психолог" },
+                { icon: BookOpen, label: "Таролог" },
+              ].map((c) => (
+                <div
+                  key={c.label}
+                  className="flex items-center gap-2 rounded-full border border-accent/10 px-4 py-2 transition-all duration-500 hover:border-accent/25"
+                  style={{ background: 'hsl(160 30% 5% / 0.5)' }}
+                >
+                  <c.icon className="h-3.5 w-3.5 text-accent/50" />
+                  <span className="font-body text-xs text-foreground/45 tracking-wide">{c.label}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
-
-        {/* Right-side vertical accent */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1.5 }}
-          className="absolute right-12 lg:right-20 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-6"
-        >
-          <div className="w-px h-24" style={{ background: 'linear-gradient(180deg, transparent, hsl(43 76% 52% / 0.15), transparent)' }} />
-          <span className="font-body text-[10px] text-foreground/20 tracking-[0.2em] [writing-mode:vertical-lr] rotate-180">
-            МАЛАХИТОВАЯ ШКАТУЛКА
-          </span>
-          <div className="w-px h-24" style={{ background: 'linear-gradient(180deg, transparent, hsl(43 76% 52% / 0.15), transparent)' }} />
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}
