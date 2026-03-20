@@ -47,7 +47,7 @@ const Approach = () => {
               Мой подход
             </h2>
             <p className="font-display text-sm text-foreground/35 italic">
-              Целостный взгляд через три грани
+              Целостный взгляд через четыре грани
             </p>
           </motion.div>
 
