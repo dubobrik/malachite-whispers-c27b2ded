@@ -1,13 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMemo } from "react";
 
-/**
- * Full-page ambient atmosphere:
- * - Slow-drifting gold dust motes
- * - Soft pulsing gem reflections (light spots)
- * - Gentle emerald glow patches that shift with scroll
- */
-
 interface DustMote {
   id: number;
   x: number;
@@ -34,6 +27,10 @@ interface LightReflection {
 }
 
 const AmbientAtmosphere = () => {
+  // ✅ ОТКЛЮЧАЕМ НА МОБИЛЬНЫХ
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  if (isMobile) return null;
+
   const { scrollYProgress } = useScroll();
   const glowShift = useTransform(scrollYProgress, [0, 1], [0, 60]);
 
@@ -76,7 +73,6 @@ const AmbientAtmosphere = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[1]" aria-hidden="true">
-      {/* Gold dust motes — very subtle floating particles */}
       {dustMotes.map((m) => (
         <motion.div
           key={m.id}
@@ -86,8 +82,12 @@ const AmbientAtmosphere = () => {
             top: `${m.y}%`,
             width: m.size,
             height: m.size,
-            background: `radial-gradient(circle, hsl(${m.hue} ${m.hue === 43 ? '76%' : '50%'} ${m.hue === 43 ? '62%' : '45%'}), transparent)`,
-            boxShadow: `0 0 ${m.size * 4}px hsl(${m.hue} ${m.hue === 43 ? '76%' : '50%'} ${m.hue === 43 ? '52%' : '40%'} / 0.15)`,
+            background: `radial-gradient(circle, hsl(${m.hue} ${
+              m.hue === 43 ? "76%" : "50%"
+            } ${m.hue === 43 ? "62%" : "45%"}), transparent)`,
+            boxShadow: `0 0 ${m.size * 4}px hsl(${m.hue} ${
+              m.hue === 43 ? "76%" : "50%"
+            } ${m.hue === 43 ? "52%" : "40%"} / 0.15)`,
           }}
           animate={{
             x: [0, m.driftX, -m.driftX * 0.6, m.driftX * 0.4, 0],
@@ -104,7 +104,6 @@ const AmbientAtmosphere = () => {
         />
       ))}
 
-      {/* Gemstone light reflections — soft diffuse glows */}
       {reflections.map((r) => (
         <motion.div
           key={`ref-${r.id}`}
@@ -114,7 +113,7 @@ const AmbientAtmosphere = () => {
             top: `${r.y}%`,
             width: r.size,
             height: r.size,
-            transform: 'translate(-50%, -50%)',
+            transform: "translate(-50%, -50%)",
             background: `radial-gradient(circle, hsl(${r.hue} ${r.sat}% ${r.light}% / 0.03), transparent 70%)`,
             filter: `blur(${r.size * 0.4}px)`,
             y: glowShift,
