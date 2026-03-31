@@ -28,7 +28,7 @@ const Footer = () => {
               { href: "https://t.me/posmotrivnytri", icon: MessageCircle },
               { href: "https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM", icon: MessageSquare },
               { href: "https://vk.com/id1097656613", icon: ExternalLink },
-              { href: "mailto:example@email.com", icon: Mail },
+              { href: "mailto:savanadi@yandex.ru", icon: Mail },
             ].map((link) => (
               <a
                 key={link.href}
