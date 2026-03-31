@@ -1,15 +1,24 @@
 
 
-## Исправление ссылки на MAX в секции контактов
+## Исправление email-адреса на savanadi@yandex.ru
 
 ### Проблема
-В `Contact.tsx` (строка 164) ссылка на мессенджер MAX ведёт просто на `https://max.ru/` — главную страницу, а не на профиль. В футере ссылка уже правильная.
+В двух местах сайта используется заглушка `example@email.com` вместо реального адреса `savanadi@yandex.ru`:
+1. **Contact.tsx** (строка 166) — секция контактов
+2. **Footer.tsx** (строка 37) — футер сайта
 
 ### Решение
-Заменить URL в `src/components/Contact.tsx` строка 164:
+Заменить `mailto:example@email.com` на `mailto:savanadi@yandex.ru` в обоих файлах.
 
-**Было:** `https://max.ru/`
-**Станет:** `https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM`
+### Изменения
 
-Одно изменение, один файл.
+**Файл 1: `src/components/Contact.tsx`** (строка 166)
+- Было: `{ href: "mailto:example@email.com", icon: Mail, label: "Email" }`
+- Станет: `{ href: "mailto:savanadi@yandex.ru", icon: Mail, label: "Email" }`
+
+**Файл 2: `src/components/Footer.tsx`** (строка 37)
+- Было: `{ href: "mailto:example@email.com", icon: Mail }`
+- Станет: `{ href: "mailto:savanadi@yandex.ru", icon: Mail }`
+
+Два файла, по одной строке в каждом.
 
