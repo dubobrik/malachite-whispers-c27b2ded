@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MagicalDustProps {
   count?: number;
@@ -26,6 +27,9 @@ const MagicalDust = ({ count = 18, className = "" }: MagicalDustProps) => {
       };
     }), [count]
   );
+
+  const isMobile = useIsMobile();
+  if (isMobile) return null;
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>

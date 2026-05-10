@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Particle {
   id: number;
@@ -11,6 +12,7 @@ interface Particle {
 
 const GoldParticles = ({ count = 15 }: { count?: number }) => {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setParticles(
@@ -24,6 +26,8 @@ const GoldParticles = ({ count = 15 }: { count?: number }) => {
       }))
     );
   }, [count]);
+
+  if (isMobile) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

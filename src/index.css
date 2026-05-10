@@ -346,3 +346,13 @@
 .animate-gem-shimmer {
   animation: gem-shimmer 8s ease-in-out infinite;
 }
+
+/* ── Mobile stability ── */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+  html, body, #root {
+    overflow-x: hidden;
+  }
+}
