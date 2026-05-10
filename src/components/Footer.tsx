@@ -23,21 +23,24 @@ const Footer = () => {
             />
           </div>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 flex-wrap justify-center">
             {[
-              { href: "https://t.me/posmotrivnytri", icon: MessageCircle },
-              { href: "https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM", icon: MessageSquare },
-              { href: "https://vk.com/id1097656613", icon: ExternalLink },
-              { href: "mailto:savanadi@yandex.ru", icon: Mail },
+              { href: "https://t.me/posmotrivnytri", icon: MessageCircle, label: null },
+              { href: "https://max.ru/u/f9LHodD0cOIvw1SL3l9vsB6En_NUgqpTd47pYeudOCQ9CnOibygsbVoY9dM", icon: MessageSquare, label: null },
+              { href: "https://vk.com/id1097656613", icon: ExternalLink, label: null },
+              { href: "mailto:savanadi@yandex.ru", icon: Mail, label: "savanadi@yandex.ru" },
             ].map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 target={link.href.startsWith('mailto') ? undefined : "_blank"}
                 rel={link.href.startsWith('mailto') ? undefined : "noopener noreferrer"}
-                className="text-foreground/20 hover:text-accent transition-colors duration-500"
+                className="flex items-center gap-2 text-foreground/20 hover:text-accent transition-colors duration-500"
               >
                 <link.icon className="h-4 w-4" />
+                {link.label && (
+                  <span className="font-body text-xs tracking-wide">{link.label}</span>
+                )}
               </a>
             ))}
           </div>
