@@ -18,6 +18,30 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) return;
+    e.preventDefault();
+    setOpen(false);
+    const id = href.slice(1);
+    // Defer so the closing menu animation doesn't fight the scroll on iOS.
+    const scroll = (attempt = 0) => {
+      const el = id ? document.getElementById(id) : null;
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({ top, behavior: "smooth" });
+        history.replaceState(null, "", href);
+      } else if (!id) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (attempt < 8) {
+        setTimeout(() => scroll(attempt + 1), 80);
+      }
+    };
+    setTimeout(scroll, 60);
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
@@ -30,7 +54,7 @@ const Header = () => {
       }}
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-6" style={{ height: scrolled ? 60 : 72, transition: 'height 0.5s ease' }}>
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#" onClick={(e) => handleAnchorClick(e, "#")} className="flex items-center gap-3 group">
           <div className="relative transition-transform duration-500 group-hover:scale-110">
             <Gem className="h-5 w-5 text-accent opacity-70" />
             <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -54,12 +78,13 @@ const Header = () => {
             <a
               key={l.href}
               href={l.href}
+              onClick={(e) => handleAnchorClick(e, l.href)}
               className="font-body text-sm text-foreground/50 hover:text-accent transition-colors duration-500 tracking-wide"
             >
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn-gold text-sm px-6 py-2.5">
+          <a href="#contact" onClick={(e) => handleAnchorClick(e, "#contact")} className="btn-gold text-sm px-6 py-2.5">
             Записаться
           </a>
         </nav>
@@ -86,14 +111,14 @@ const Header = () => {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleAnchorClick(e, l.href)}
                 className="block px-8 py-4 font-body text-sm text-foreground/50 hover:text-accent transition-colors tracking-wide"
               >
                 {l.label}
               </a>
             ))}
             <div className="px-8 pb-5 pt-2">
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-gold text-sm w-full text-center">
+              <a href="#contact" onClick={(e) => handleAnchorClick(e, "#contact")} className="btn-gold text-sm w-full text-center">
                 Записаться
               </a>
             </div>
