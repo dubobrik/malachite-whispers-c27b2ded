@@ -18,6 +18,30 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) return;
+    e.preventDefault();
+    setOpen(false);
+    const id = href.slice(1);
+    // Defer so the closing menu animation doesn't fight the scroll on iOS.
+    const scroll = (attempt = 0) => {
+      const el = id ? document.getElementById(id) : null;
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({ top, behavior: "smooth" });
+        history.replaceState(null, "", href);
+      } else if (!id) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (attempt < 8) {
+        setTimeout(() => scroll(attempt + 1), 80);
+      }
+    };
+    setTimeout(scroll, 60);
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
