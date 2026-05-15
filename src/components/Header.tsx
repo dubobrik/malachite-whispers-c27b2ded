@@ -54,7 +54,7 @@ const Header = () => {
       }}
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-6" style={{ height: scrolled ? 60 : 72, transition: 'height 0.5s ease' }}>
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#" onClick={(e) => handleAnchorClick(e, "#")} className="flex items-center gap-3 group">
           <div className="relative transition-transform duration-500 group-hover:scale-110">
             <Gem className="h-5 w-5 text-accent opacity-70" />
             <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -78,12 +78,13 @@ const Header = () => {
             <a
               key={l.href}
               href={l.href}
+              onClick={(e) => handleAnchorClick(e, l.href)}
               className="font-body text-sm text-foreground/50 hover:text-accent transition-colors duration-500 tracking-wide"
             >
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn-gold text-sm px-6 py-2.5">
+          <a href="#contact" onClick={(e) => handleAnchorClick(e, "#contact")} className="btn-gold text-sm px-6 py-2.5">
             Записаться
           </a>
         </nav>
@@ -110,7 +111,7 @@ const Header = () => {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleAnchorClick(e, l.href)}
                 className="block px-8 py-4 font-body text-sm text-foreground/50 hover:text-accent transition-colors tracking-wide"
               >
                 {l.label}
