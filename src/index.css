@@ -75,10 +75,19 @@
     background-color: hsl(160 30% 4%);
     background-image: url('./assets/malachite-bg.jpg');
     background-size: cover;
-    background-attachment: fixed;
+    /* `fixed` is broken/expensive on iOS Safari and can produce a black
+       screen when combined with large hero textures. Use scroll on mobile. */
+    background-attachment: scroll;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    min-height: 100vh;
+  }
+
+  @media (min-width: 769px) {
+    body {
+      background-attachment: fixed;
+    }
   }
 
   body::after {
