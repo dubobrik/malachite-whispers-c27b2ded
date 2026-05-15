@@ -118,7 +118,7 @@ const Header = () => {
               </a>
             ))}
             <div className="px-8 pb-5 pt-2">
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-gold text-sm w-full text-center">
+              <a href="#contact" onClick={(e) => handleAnchorClick(e, "#contact")} className="btn-gold text-sm w-full text-center">
                 Записаться
               </a>
             </div>
