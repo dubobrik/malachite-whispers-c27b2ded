@@ -4,7 +4,7 @@ import GoldParticles from "./GoldParticles";
 import MagicCircle from "./MagicCircle";
 import MagicalDust from "./MagicalDust";
 import ParallaxLayer from "./ParallaxLayer";
-import specialistPhoto from "@/assets/specialist-photo.jpg";
+import specialistPhoto from "@/assets/specialist-photo-data";
 
 const Hero = () => {
   return (
